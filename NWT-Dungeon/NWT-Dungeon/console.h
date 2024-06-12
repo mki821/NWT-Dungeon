@@ -1,5 +1,5 @@
 #pragma once
-#include <winnt.h>
+#include <Windows.h>
 void FullScreen();
 void GotoXY(int x, int y);
 BOOL GotoPos(int x, int y);
