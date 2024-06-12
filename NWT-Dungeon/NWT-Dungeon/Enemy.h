@@ -1,5 +1,7 @@
 #pragma once
 #include "Core.h"
+#include "console.h"
+
 class Enemy
 {
 public:
