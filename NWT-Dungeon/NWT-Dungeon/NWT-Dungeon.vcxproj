@@ -129,16 +129,19 @@
   <ItemGroup>
     <ClInclude Include="console.h" />
     <ClInclude Include="Core.h" />
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="Define.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnemyManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Core.cpp" />
-    <ClCompile Include="main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="TestMainnnnnnnnnnnn.cpp" />
+    <ClCompile Include="TrashMob.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
