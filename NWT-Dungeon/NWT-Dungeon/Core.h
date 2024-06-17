@@ -1,7 +1,9 @@
 #pragma once
+#include "Player.h"
+
 class Core {
 private:
-	Core();
+	Core() = default;
 	static Core* m_pInstance;
 public:
 	static Core* GetInst() {
@@ -23,4 +25,11 @@ private:
 	void Update();
 	void Render();
 	void FrameSync(int frameRate);
+private:
+	int _select = 0;
+
+	char _ui[14][128];
+	void UISet(int x, int y, std::string value);
+
+	Player* m_player;
 };
