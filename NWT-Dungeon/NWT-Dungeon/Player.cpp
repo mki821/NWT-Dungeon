@@ -1,16 +1,20 @@
 #include <iostream>
 #include <Windows.h>
 #include "console.h"
+#include "define.h"
 #include "Player.h"
 
 void Player::Init() {
-	_health = _maxHealth;
-	_attack = 3;
-	_stamina = _maxStamina;
+	m_health = m_maxHealth;
+	m_attack = 3;
+	m_stamina = m_maxStamina;
+
+	m_character = MEN;
+	m_characterSize = 11;
 }
 
 void Player::ApplyDamage(int damage) {
-	SetHealth(_health - damage);
+	SetHealth(m_health - damage);
 }
 
 int Player::ChooseAttack() {
@@ -32,13 +36,13 @@ bool Player::Attack(PlayerSkillEnum way) {
 
 	switch (way) {
 		case PlayerSkillEnum::Attack:
-			if (SetStamina(_stamina - _commonAttackStamina)) {
+			if (SetStamina(m_stamina - _commonAttackStamina)) {
 				CommonAttack();
 				return true;
 			}
 			return false;
 		case PlayerSkillEnum::Tackle:
-			if (SetStamina(_stamina - _tackleStamina)) {
+			if (SetStamina(m_stamina - _tackleStamina)) {
 				Tackle();
 				return true;
 			}
@@ -52,7 +56,6 @@ void Player::CommonAttack() {
 	//_targetPtr->ApplyDamage(_attack);
 	GotoXY(0, 0);
 	std::cout << "공격!";
-	_stamina -= 3;
 
 	//Animation
 }
@@ -63,31 +66,4 @@ void Player::Tackle() {
 	std::cout << "몸통박치기!";
 
 	//Animation
-}
-
-int Player::GetHealth() const {
-	return _health;
-}
-
-void Player::SetHealth(int value) {
-	if (value < 0) _health = 0;
-	else if (value > _maxHealth) _health = _maxHealth;
-	else _health = value;
-}
-
-int Player::GetAttack() const {
-	return _attack;
-}
-
-int Player::GetStamina() const {
-	return _stamina;
-}
-
-bool Player::SetStamina(int value) {
-	if (value < 0) return false;
-
-	if (value > _maxStamina) _stamina = _maxStamina;
-	else _stamina = value;
-
-	return true;
 }

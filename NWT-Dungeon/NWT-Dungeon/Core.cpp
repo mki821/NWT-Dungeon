@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "console.h"
+#include "define.h"
 #include "Player.h"
 #include "Core.h"
 
@@ -32,6 +33,24 @@ void Core::Update() {
 }
 
 void Core::Render() {
+	GameRender();
+	UIRender();
+}
+
+void Core::GameRender() {
+	std::string* character = m_player->GetCharacter();
+	int size = m_player->GetCharacterSize();
+	for (int i = 0; i < size; ++i) {
+		GotoXY(15, i + 5);
+		cout << character[i];
+	}
+	GotoXY(17, 17);
+	cout << "Health: " << m_player->GetHealth();
+	GotoXY(17, 18);
+	cout << "Stamina: " << m_player->GetStamina();
+}
+
+void Core::UIRender() {
 	#pragma region UIFrame
 	GotoXY(4, 20);
 	cout << "¦£";
