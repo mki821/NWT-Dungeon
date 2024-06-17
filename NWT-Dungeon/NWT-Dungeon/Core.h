@@ -24,6 +24,8 @@ public:
 private:
 	void Update();
 	void Render();
+	void GameRender();
+	void UIRender();
 	void FrameSync(int frameRate);
 private:
 	int _select = 0;
