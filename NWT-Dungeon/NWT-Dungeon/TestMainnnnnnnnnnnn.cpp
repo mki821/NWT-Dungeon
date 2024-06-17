@@ -19,7 +19,7 @@ int main() {
 	//	Sleep(100);
 	//}
 
-	for (int i = 0; i < 11; ++i) {
-		cout << MEN[i] << endl;
+	for (int i = 0; i < 8; ++i) {
+		wcout << MainTitle[i] << endl;
 	}
 }

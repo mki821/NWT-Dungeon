@@ -9,9 +9,9 @@ void EnemyManager::PushEnemy(int atk, int health, EnemyEnum enem)
 		m_vecEnemies.push_back(new Boss(atk, health));
 }
 
-Enemy EnemyManager::GetEnemy()	
+Enemy EnemyManager::GetEnemy()							
 {
-	return *m_vecEnemies.front();
+	return *m_vecEnemies.front();	
 }
 
 void EnemyManager::PopEnemy()

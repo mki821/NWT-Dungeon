@@ -1,5 +1,5 @@
 #pragma once
-#include <Windows.h>
+#include "define.h"
 void FullScreen();
 void GotoXY(int x, int y);
 BOOL GotoPos(int x, int y);
@@ -16,7 +16,7 @@ enum class Color {
 	Gray, LightBlue, LightGreen, Mint,
 	LightRed, LightViolet, LightYellow, White, End
 };
-#include <iostream>
+
 using std::cout;
 using std::wcout;
 using std::endl;

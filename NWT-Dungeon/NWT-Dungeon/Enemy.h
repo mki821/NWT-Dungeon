@@ -11,8 +11,6 @@ public:
 protected:
 	float m_atk;
 	float m_health;
-private:
-	vector<Enemy*> vecEnemies;	
 };
 
 class TrashMob : public Enemy

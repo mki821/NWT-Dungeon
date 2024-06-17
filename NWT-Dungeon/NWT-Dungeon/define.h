@@ -1,17 +1,9 @@
 #pragma once
 
-#include <string>
+#include <Windows.h>
+#include <vector>
+#include<iostream>
+#include<fstream>
+#include<memory>
 
-static std::string MEN[11] = {
-	{"____"},
-	{" \\   \\"},
-	{" _\\___\\_"},
-	{"  / \" _\)"},
-	{"  ((\\__ - _\\"},
-	{"   / \\\\"},
-	{"  / __|  /\\\\"},
-	{" UUU  /  /"},
-	{"   | /, _/"},
-	{"   |/|\\ | __"},
-	{"   / __\\____\\"}
-};
+using namespace std;
