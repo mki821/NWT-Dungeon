@@ -16,6 +16,6 @@ Enemy EnemyManager::GetEnemy()
 
 void EnemyManager::PopEnemy()
 {
-	m_vecEnemies.pop_back();
+	m_vecEnemies.erase(m_vecEnemies.begin());
 }
 
