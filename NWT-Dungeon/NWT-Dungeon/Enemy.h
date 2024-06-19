@@ -2,10 +2,12 @@
 #include "Core.h"
 #include "console.h"
 #include "EnemyManager.h"
+#include "Character.h"
 
-class Enemy
+class Enemy : public Character
 {
 public:
+	void Init();	
 	Enemy(float atk, float health);
 	virtual ~Enemy() = default;
 protected:

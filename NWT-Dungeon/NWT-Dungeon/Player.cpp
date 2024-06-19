@@ -9,7 +9,7 @@ void Player::Init() {
 	m_attack = 3;
 	m_stamina = m_maxStamina;
 
-	m_character = MEN;
+	//m_character = MEN;
 	m_characterSize = 11;
 }
 
