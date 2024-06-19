@@ -5,10 +5,10 @@
 class Character
 {
 public:
-	std::string* GetCharacter();
+	std::wstring* GetCharacter();
 	int GetCharacterSize();
 protected:
-	std::string* m_character;
+	std::wstring* m_character;
 	int m_characterSize;
 public:
 	int GetHealth() const;
