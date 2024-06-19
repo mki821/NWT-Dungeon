@@ -17,20 +17,6 @@ void Player::ApplyDamage(int damage) {
 	SetHealth(m_health - damage);
 }
 
-int Player::ChooseAttack() {
-	static int select = 0;
-
-	if (GetAsyncKeyState(VK_UP) & 0x8000) --select;
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) ++select;
-
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) Attack((PlayerSkillEnum)select);
-
-	if (select < 0) select = 0;
-	else if (select > 1) select = 1;
-
-	return select;
-}
-
 bool Player::Attack(PlayerSkillEnum way) {
 	//this->target = target;
 

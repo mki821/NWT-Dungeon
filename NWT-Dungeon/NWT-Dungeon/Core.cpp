@@ -5,7 +5,7 @@
 #include "Player.h"
 #include "Core.h"
 
-using std::cout;
+using std::wcout;
 
 Core* Core::m_pInstance = nullptr;
 
@@ -14,8 +14,11 @@ bool Core::Init() {
 	LockResize();
 	CursorVisible(false, 1);
 
-	m_player = new Player;
-	m_player->Init();
+	for (int i = 0; i < 3; ++i) {
+		Player* player = new Player;
+		player->Init();
+		m_players.push_back(player);
+	}
 
 	return true;
 }
@@ -29,7 +32,20 @@ void Core::Run() {
 }
 
 void Core::Update() {
-	_select = m_player->ChooseAttack();
+	switch (m_currentTurn) {
+		case TURN::SELECTPLAYER: {
+			_select = ChooseIndex(0, 2);
+			if (_select == -1)
+				m_selectedPlayer = m_players[_finalSelect];
+		}
+		break;
+		case TURN::SELECTSKILL:
+			break;
+		case TURN::SELECTENEMY:
+			break;
+		case TURN::ATTACKENEMY:
+			break;
+	}
 }
 
 void Core::Render() {
@@ -38,38 +54,48 @@ void Core::Render() {
 }
 
 void Core::GameRender() {
-	std::string* character = m_player->GetCharacter();
-	int size = m_player->GetCharacterSize();
-	for (int i = 0; i < size; ++i) {
-		GotoXY(15, i + 5);
-		cout << character[i];
+	for (int i = 0; i < m_players.size(); ++i) {
+		if (_select == i) SetColor((int)Color::Red);
+		CharacterRender(10 + 20 * i, 18, m_players[i]);
+		if (_select == i) SetColor((int)Color::White);
 	}
-	GotoXY(17, 17);
-	cout << "Health: " << m_player->GetHealth();
-	GotoXY(17, 18);
-	cout << "Stamina: " << m_player->GetStamina();
+}
+
+void Core::CharacterRender(int x, int y, Character* _character) {
+	std::wstring* character = _character->GetCharacter();
+	int size = _character->GetCharacterSize();
+
+	GotoXY(x + 3, y - 1);
+	wcout << "Health: " << _character->GetHealth();
+	GotoXY(x + 3, y);
+	wcout << "Stamina: " << _character->GetStamina();
+
+	for (int i = size - 1; i >= 0; --i) {
+		GotoXY(x, y - size + i - 2);
+		wcout << character[i];
+	}
 }
 
 void Core::UIRender() {
 	#pragma region UIFrame
 	GotoXY(4, 20);
-	cout << "¦£";
+	wcout << "¦£";
 	for (int i = 0; i < 129; ++i) {
-		cout << "¦¡";
+		wcout << "¦¡";
 	}
-	cout << "¦¤";
+	wcout << "¦¤";
 	for (int i = 21; i < 35; ++i) {
 		GotoXY(4, i);
-		cout << "¦¢";
+		wcout << "¦¢";
 		GotoXY(134, i);
-		cout << "¦¢";
+		wcout << "¦¢";
 	}
 	GotoXY(4, 35);
-	cout << "¦¦";
+	wcout << "¦¦";
 	for (int i = 0; i < 129; ++i) {
-		cout << "¦¡";
+		wcout << "¦¡";
 	}
-	cout << "¦¥";
+	wcout << "¦¥";
 	#pragma endregion
 
 	memset(_ui, ' ', sizeof(_ui));
@@ -81,7 +107,7 @@ void Core::UIRender() {
 	for (int y = 0; y < 14; ++y) {
 		GotoXY(6, 21 + y);
 		for (int x = 0; x < 128; ++x) {
-			cout << _ui[y][x];
+			wcout << _ui[y][x];
 		}
 	}
 }
@@ -103,4 +129,21 @@ void Core::UISet(int x, int y, std::string value) {
 	for (int i = 0; i < value.length(); ++i) {
 		_ui[y][x + i] = value[i];
 	}
+}
+
+int Core::ChooseIndex(int min, int max) {
+	static int select = 0;
+
+	if (GetAsyncKeyState(VK_UP) & 0x8000) --select;
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) ++select;
+
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+		_finalSelect = select;
+		return -1;
+	}
+
+	if (select < 0) select = 0;
+	else if (select > 1) select = 1;
+
+	return select;
 }
