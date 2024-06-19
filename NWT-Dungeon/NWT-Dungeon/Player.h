@@ -11,10 +11,10 @@ public:
 	void Init();
 	//void SetTarget(Enemy* target);
 	void ApplyDamage(int damage);
+	bool Attack(PlayerSkillEnum way);
 private:
 	//Enemy* m_target;
 private:
-	bool Attack(PlayerSkillEnum way);
 	void CommonAttack();
 	void Tackle();
 private:

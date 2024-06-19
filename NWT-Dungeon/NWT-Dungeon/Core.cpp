@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <fcntl.h>
+#include <io.h>
 #include "console.h"
 #include "define.h"
 #include "Player.h"
@@ -13,11 +15,18 @@ bool Core::Init() {
 	system("title NWT_DUNGEON | mode con cols=140 lines=40");
 	LockResize();
 	CursorVisible(false, 1);
+	_setmode(_fileno(stdout), _O_U16TEXT);		
 
 	for (int i = 0; i < 3; ++i) {
 		Player* player = new Player;
 		player->Init();
 		m_players.push_back(player);
+	}
+
+	for (int i = 0; i < 1; ++i) {
+		Enemy* enemy = new Enemy;
+		enemy->Init();
+		m_enemies.push_back(enemy);
 	}
 
 	m_currentTurn = TURN::SELECTPLAYER;
@@ -88,6 +97,9 @@ void Core::GameRender() {
 			CharacterRender(10 + 20 * i, 18, m_players[i]);
 			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::White);
 		}
+	}
+	for (int i = 0; i < m_enemies.size(); ++i) {
+		CharacterRender(78 + 20 * i, 18, m_enemies[i]);
 	}
 }
 
