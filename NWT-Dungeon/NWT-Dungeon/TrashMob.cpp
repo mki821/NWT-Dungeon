@@ -2,7 +2,7 @@
 
 void Enemy::Init()
 {
-	m_character = TrashMob;
+	m_character = TrashMobVisual;
 	m_characterSize = 10;
 }
 

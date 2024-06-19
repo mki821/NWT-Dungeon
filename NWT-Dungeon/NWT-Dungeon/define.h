@@ -2,9 +2,8 @@
 
 #include <Windows.h>
 #include <vector>
-#include <iostream>
-#include <io.h>
 #include <fcntl.h>
+#include<iostream>
 
 using namespace std;
 
@@ -20,7 +19,7 @@ static wstring MainTitle[8] =
 	{L" ▀█   █▀   ▀███▀███▀     ▄████▀        ████████▀  ████████▀   ▀█   █▀    ████████▀    ██████████  ▀██████▀   ▀█   █▀  "}
 };
 
-static wstring TrashMob[10] =
+static wstring TrashMobVisual[10] =
 {
 	{L"		 ██				 "},
 	{L"	     ████			 "},

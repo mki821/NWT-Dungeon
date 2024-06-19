@@ -1,5 +1,7 @@
 #pragma once
-#include "Define.h"
+#include "define.h"
+
+using std::vector;
 
 enum class EnemyEnum
 {
