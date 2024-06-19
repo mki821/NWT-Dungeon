@@ -3,6 +3,7 @@
 #include "console.h"
 #include "define.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Core.h"
 
 using std::wcout;
@@ -18,6 +19,13 @@ bool Core::Init() {
 		Player* player = new Player;
 		player->Init();
 		m_players.push_back(player);
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		Enemy* enemy = new Enemy;
+		enemy->Init();
+		m_enemies.push_back(enemy);
 	}
 
 	return true;
@@ -57,6 +65,12 @@ void Core::GameRender() {
 	for (int i = 0; i < m_players.size(); ++i) {
 		if (_select == i) SetColor((int)Color::Red);
 		CharacterRender(10 + 20 * i, 18, m_players[i]);
+		if (_select == i) SetColor((int)Color::White);
+	}
+
+	for (int i = 0; i < m_enemies.size(); ++i) {
+		if (_select == i) SetColor((int)Color::Blue);
+		CharacterRender(100 + 20 * i, 18, m_enemies[i]);
 		if (_select == i) SetColor((int)Color::White);
 	}
 }

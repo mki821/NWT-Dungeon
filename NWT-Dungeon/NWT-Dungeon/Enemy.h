@@ -1,29 +1,29 @@
 #pragma once
-#include "Core.h"
 #include "console.h"
-#include "EnemyManager.h"
 #include "Character.h"
+#include "define.h"
 
 class Enemy : public Character
 {
 public:
-	void Init();	
-	Enemy(float atk, float health);
+	Enemy() = default;
 	virtual ~Enemy() = default;
-protected:
-	float m_atk;
-	float m_health;
+
+	void Init();	
+	virtual void NormalAttack();
 };
 
 class TrashMob : public Enemy
 {
 public:
-	TrashMob(float atk, float health);
+	TrashMob();	
+	void NormalAttack() override;	
 };
 
 class Boss : public Enemy
 {
 public:
-	Boss(float atk, float health);
+	Boss();
+	void NormalAttack() override;
 };
 

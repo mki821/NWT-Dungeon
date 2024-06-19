@@ -1,11 +1,8 @@
 #include "Enemy.h"
 
-Boss::Boss(float atk, float health) : Enemy(atk, health)
+Boss::Boss(){}
+
+void Boss::NormalAttack()
 {
 
 }
-//
-//float Boss::getStat()
-//{
-//	return 0.0f;
-//}

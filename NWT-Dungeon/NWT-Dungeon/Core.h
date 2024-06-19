@@ -2,6 +2,7 @@
 #include <vector>
 #include "Character.h"
 #include "Player.h"
+#include "Enemy.h"
 
 enum class TURN {
 	SELECTPLAYER, SELECTENEMY, SELECTSKILL, ATTACKENEMY
@@ -46,4 +47,7 @@ private:
 	
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;
+
+	std::vector<Enemy*> m_enemies;
+	Enemy* m_enemy;
 };

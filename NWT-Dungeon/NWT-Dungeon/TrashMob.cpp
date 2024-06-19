@@ -6,8 +6,8 @@ void Enemy::Init()
 	m_characterSize = 10;
 }
 
-TrashMob::TrashMob(float atk, float health) : Enemy(atk, health)
+TrashMob::TrashMob() {}
+
+void TrashMob::NormalAttack()
 {
-	atk = 1;
-	health = 100;
 }
