@@ -13,6 +13,10 @@ void Player::Init() {
 	m_characterSize = 11;
 }
 
+//void Player::SetTarget(Enemy* target) {
+//	m_target = target;
+//}
+
 void Player::ApplyDamage(int damage) {
 	SetHealth(m_health - damage);
 }
