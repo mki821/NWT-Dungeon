@@ -1,6 +1,6 @@
 #include "Character.h"
 
-std::string* Character::GetCharacter() {
+std::wstring* Character::GetCharacter() {
     return m_character;
 }
 

@@ -4,11 +4,11 @@
 
 class Character
 {
-public:	
-	std::wstring* GetCharacter();	
+public:
+	std::wstring* GetCharacter();
 	int GetCharacterSize();
 protected:
-	std::wstring* m_character;	
+	std::wstring* m_character;
 	int m_characterSize;
 public:
 	int GetHealth() const;

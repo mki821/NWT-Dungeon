@@ -1,5 +1,11 @@
 #pragma once
+#include <vector>
+#include "Character.h"
 #include "Player.h"
+
+enum class TURN {
+	SELECTPLAYER, SELECTENEMY, SELECTSKILL, ATTACKENEMY
+};
 
 class Core {
 private:
@@ -25,13 +31,19 @@ private:
 	void Update();
 	void Render();
 	void GameRender();
+	void CharacterRender(int x, int y, Character* _character);
 	void UIRender();
 	void FrameSync(int frameRate);
 private:
-	int _select = 0;
-
 	char _ui[14][128];
 	void UISet(int x, int y, std::string value);
-
-	Player* m_player;
+private:
+	int _select = 0;
+	int _finalSelect = 0;
+	int ChooseIndex(int min, int max);
+private:
+	TURN m_currentTurn;
+	
+	std::vector<Player*> m_players;
+	Player* m_selectedPlayer;
 };
