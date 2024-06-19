@@ -3,7 +3,6 @@
 #include "console.h"
 #include "define.h"
 #include "Player.h"
-#include "Enemy.h"
 #include "Core.h"
 
 using std::wcout;
@@ -21,12 +20,8 @@ bool Core::Init() {
 		m_players.push_back(player);
 	}
 
-	for (int i = 0; i < 1; i++)
-	{
-		Enemy* enemy = new Enemy;
-		enemy->Init();
-		m_enemies.push_back(enemy);
-	}
+	m_currentTurn = TURN::SELECTPLAYER;
+	_lastSelectTime = clock();
 
 	return true;
 }
@@ -42,16 +37,36 @@ void Core::Run() {
 void Core::Update() {
 	switch (m_currentTurn) {
 		case TURN::SELECTPLAYER: {
-			_select = ChooseIndex(0, 2);
-			if (_select == -1)
+			ChooseIndex(0, 2);
+			if (_select == -1) {
 				m_selectedPlayer = m_players[_finalSelect];
+				_select = 0;
+				_finalSelect = 0;
+				m_currentTurn = TURN::SELECTENEMY;
+			}
 		}
 		break;
-		case TURN::SELECTSKILL:
-			break;
-		case TURN::SELECTENEMY:
-			break;
-		case TURN::ATTACKENEMY:
+		case TURN::SELECTENEMY: {
+			ChooseIndex(0, 2);
+			if (_select == -1) {
+				//m_selectedPlayer->SetTarget(m_enemies[_finalSelect]);
+				_select = 0;
+				_finalSelect = 0;
+				m_currentTurn = TURN::SELECTSKILL;
+			}
+		}
+		break;
+		case TURN::SELECTSKILL: {
+			ChooseIndex(0, 1, false);
+			if (_select == -1) {
+				m_selectedPlayer->Attack((PlayerSkillEnum)_finalSelect);
+				_select = 0;
+				_finalSelect = 0;
+				m_currentTurn = TURN::SELECTPLAYER;
+			}
+		}
+		break;
+		case TURN::ENEMYATTACK:
 			break;
 	}
 }
@@ -63,15 +78,16 @@ void Core::Render() {
 
 void Core::GameRender() {
 	for (int i = 0; i < m_players.size(); ++i) {
-		if (_select == i) SetColor((int)Color::Red);
-		CharacterRender(10 + 20 * i, 18, m_players[i]);
-		if (_select == i) SetColor((int)Color::White);
-	}
-
-	for (int i = 0; i < m_enemies.size(); ++i) {
-		if (_select == i) SetColor((int)Color::Blue);
-		CharacterRender(100 + 20 * i, 18, m_enemies[i]);
-		if (_select == i) SetColor((int)Color::White);
+		if (m_currentTurn == TURN::SELECTPLAYER) {
+			if (_finalSelect == i) SetColor((int)Color::Red);
+			CharacterRender(10 + 20 * i, 18, m_players[i]);
+			if (_finalSelect == i) SetColor((int)Color::White);
+		}
+		else {
+			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::Red);
+			CharacterRender(10 + 20 * i, 18, m_players[i]);
+			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::White);
+		}
 	}
 }
 
@@ -116,7 +132,9 @@ void Core::UIRender() {
 
 	UISet(7, 3, "공격");
 	UISet(7, 5, "몸통박치기");
-	UISet(4, 3 + 2 * _select, "▶");
+
+	if(m_currentTurn == TURN::SELECTSKILL)
+		UISet(4, 3 + 2 * _select, "▶");
 
 	for (int y = 0; y < 14; ++y) {
 		GotoXY(6, 21 + y);
@@ -145,19 +163,28 @@ void Core::UISet(int x, int y, std::string value) {
 	}
 }
 
-int Core::ChooseIndex(int min, int max) {
-	static int select = 0;
+void Core::ChooseIndex(int min, int max, bool horizontal) {
+	if (clock() - _lastSelectTime > 100) {
+		_lastSelectTime = clock();
+	}
+	else return;
 
-	if (GetAsyncKeyState(VK_UP) & 0x8000) --select;
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) ++select;
-
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-		_finalSelect = select;
-		return -1;
+	if (horizontal) {
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000) --_select;
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) ++_select;
+	}
+	else {
+		if (GetAsyncKeyState(VK_UP) & 0x8000) --_select;
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000) ++_select;
 	}
 
-	if (select < 0) select = 0;
-	else if (select > 1) select = 1;
+	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
+		_select = -1;
+		return;
+	}
 
-	return select;
+	if (_select < min) _select = min;
+	else if (_select > max) _select = max;
+
+	_finalSelect = _select;
 }

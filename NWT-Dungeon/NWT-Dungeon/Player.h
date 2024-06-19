@@ -9,12 +9,12 @@ enum class PlayerSkillEnum {
 class Player : public Character {
 public:
 	void Init();
+	//void SetTarget(Enemy* target);
 	void ApplyDamage(int damage);
-	int ChooseAttack();
-	bool Attack(PlayerSkillEnum way);
-	//void Attack(Eenmy* target, PlayerSkillEnum way);
 private:
-	//Enemy* _targetPtr;
+	//Enemy* m_target;
+private:
+	bool Attack(PlayerSkillEnum way);
 	void CommonAttack();
 	void Tackle();
 private:

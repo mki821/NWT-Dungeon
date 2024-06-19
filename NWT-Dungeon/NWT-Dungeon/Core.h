@@ -5,7 +5,7 @@
 #include "Enemy.h"
 
 enum class TURN {
-	SELECTPLAYER, SELECTENEMY, SELECTSKILL, ATTACKENEMY
+	SELECTPLAYER, SELECTENEMY, SELECTSKILL, ENEMYATTACK
 };
 
 class Core {
@@ -41,7 +41,8 @@ private:
 private:
 	int _select = 0;
 	int _finalSelect = 0;
-	int ChooseIndex(int min, int max);
+	clock_t _lastSelectTime;
+	void ChooseIndex(int min, int max, bool horizontal = true);
 private:
 	TURN m_currentTurn;
 	
