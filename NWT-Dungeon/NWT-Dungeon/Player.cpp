@@ -22,10 +22,6 @@ void Player::SetTarget(Enemy* target) {
 	m_target = target;
 }
 
-void Player::ApplyDamage(int damage) {
-	SetHealth(m_health - damage);
-}
-
 bool Player::Attack(PlayerSkillEnum way) {
 	switch (way) {
 		case PlayerSkillEnum::Attack:
@@ -46,17 +42,15 @@ bool Player::Attack(PlayerSkillEnum way) {
 }
 
 void Player::CommonAttack() {
-	m_target->SetHealth(m_target->GetHealth() - m_attack);
+	m_target->ApplyDamage(m_attack);
 	GotoXY(0, 0);
-	std::cout << "공격!";
 
 	//Animation
 }
 
 void Player::Tackle() {
-	m_target->SetHealth(m_target->GetHealth() - m_attack * 1.1);
+	m_target->ApplyDamage(m_attack * 1.1);
 	GotoXY(0, 0);
-	std::cout << "몸통박치기!";
 
 	//Animation
 }

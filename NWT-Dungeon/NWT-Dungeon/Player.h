@@ -12,7 +12,6 @@ public:
 	void Init();
 	Enemy* GetTarget();
 	void SetTarget(Enemy* target);
-	void ApplyDamage(int damage);
 	bool Attack(PlayerSkillEnum way);
 private:
 	Enemy* m_target;
