@@ -35,7 +35,7 @@ static std::wstring MEN[11] = {
 
 static wstring TrashMobVisual[10] =
 {
-	{L"		 ██				 "},
+	{L"       ██              "},
 	{L"	     ████			 "},
 	{L"	  ████████████		 "},
 	{L"  ████████████████	 "},

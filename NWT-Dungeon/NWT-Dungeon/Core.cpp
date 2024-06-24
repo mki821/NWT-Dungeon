@@ -15,7 +15,7 @@ bool Core::Init() {
 	system("title NWT_DUNGEON | mode con cols=140 lines=40");
 	LockResize();
 	CursorVisible(false, 1);
-	_setmode(_fileno(stdout), _O_U16TEXT);		
+	_setmode(_fileno(stdout), _O_U16TEXT);			
 
 	for (int i = 0; i < 3; ++i) {
 		Player* player = new Player;
