@@ -9,6 +9,10 @@ int Character::GetCharacterSize()
     return m_characterSize;
 }
 
+void Character::ApplyDamage(int damage) {
+	SetHealth(m_health - damage);
+}
+
 int Character::GetHealth() const {
     return m_health;
 }
