@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Character.h"
+#include "Enemy.h"
 
 enum class PlayerSkillEnum {
 	Attack, Tackle
@@ -9,11 +10,12 @@ enum class PlayerSkillEnum {
 class Player : public Character {
 public:
 	void Init();
-	//void SetTarget(Enemy* target);
+	Enemy* GetTarget();
+	void SetTarget(Enemy* target);
 	void ApplyDamage(int damage);
 	bool Attack(PlayerSkillEnum way);
 private:
-	//Enemy* m_target;
+	Enemy* m_target;
 private:
 	void CommonAttack();
 	void Tackle();
