@@ -11,6 +11,8 @@ protected:
 	std::wstring* m_character;
 	int m_characterSize;
 public:
+	void ApplyDamage(int damage);
+public:
 	int GetHealth() const;
 	void SetHealth(int value);
 	int GetAttack() const;

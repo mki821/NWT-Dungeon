@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include "console.h"
 #include "define.h"
+#include "Enemy.h"
 #include "Player.h"
 
 void Player::Init() {
@@ -13,17 +14,19 @@ void Player::Init() {
 	m_characterSize = 11;
 }
 
-//void Player::SetTarget(Enemy* target) {
-//	m_target = target;
-//}
+Enemy* Player::GetTarget() {
+	return m_target;
+}
+
+void Player::SetTarget(Enemy* target) {
+	m_target = target;
+}
 
 void Player::ApplyDamage(int damage) {
 	SetHealth(m_health - damage);
 }
 
 bool Player::Attack(PlayerSkillEnum way) {
-	//this->target = target;
-
 	switch (way) {
 		case PlayerSkillEnum::Attack:
 			if (SetStamina(m_stamina - _commonAttackStamina)) {
@@ -43,7 +46,7 @@ bool Player::Attack(PlayerSkillEnum way) {
 }
 
 void Player::CommonAttack() {
-	//_targetPtr->ApplyDamage(_attack);
+	m_target->SetHealth(m_target->GetHealth() - m_attack);
 	GotoXY(0, 0);
 	std::cout << "공격!";
 
@@ -51,7 +54,7 @@ void Player::CommonAttack() {
 }
 
 void Player::Tackle() {
-	//_targetPtr->ApplyDamage((int)(_attack * 1.1));
+	m_target->SetHealth(m_target->GetHealth() - m_attack * 1.1);
 	GotoXY(0, 0);
 	std::cout << "몸통박치기!";
 

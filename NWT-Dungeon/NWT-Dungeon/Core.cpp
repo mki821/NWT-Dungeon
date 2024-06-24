@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <fstream>
 #include <fcntl.h>
 #include <io.h>
@@ -15,7 +15,7 @@ bool Core::Init() {
 	system("title NWT_DUNGEON | mode con cols=140 lines=40");
 	LockResize();
 	CursorVisible(false, 1);
-	_setmode(_fileno(stdout), _O_U16TEXT);			
+	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 
 	for (int i = 0; i < 3; ++i) {
 		Player* player = new Player;
@@ -23,7 +23,7 @@ bool Core::Init() {
 		m_players.push_back(player);
 	}
 
-	for (int i = 0; i < 1; ++i) {
+	for (int i = 0; i < 3; ++i) {
 		Enemy* enemy = new Enemy;
 		enemy->Init();
 		m_enemies.push_back(enemy);
@@ -89,17 +89,29 @@ void Core::GameRender() {
 	for (int i = 0; i < m_players.size(); ++i) {
 		if (m_currentTurn == TURN::SELECTPLAYER) {
 			if (_finalSelect == i) SetColor((int)Color::Red);
-			CharacterRender(10 + 20 * i, 18, m_players[i]);
-			if (_finalSelect == i) SetColor((int)Color::White);
+			CharacterRender(6 + 20 * i, 18, m_players[i]);
 		}
 		else {
 			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::Red);
-			CharacterRender(10 + 20 * i, 18, m_players[i]);
-			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::White);
+			CharacterRender(6 + 20 * i, 18, m_players[i]);
 		}
+		SetColor((int)Color::White);
 	}
+
 	for (int i = 0; i < m_enemies.size(); ++i) {
-		CharacterRender(78 + 20 * i, 18, m_enemies[i]);
+		if (m_currentTurn == TURN::SELECTENEMY) {
+			if (_finalSelect == i) SetColor((int)Color::Red);
+			CharacterRender(68 + 23 * i, 18, m_enemies[i]);
+		}
+		else {
+			if (m_selectedPlayer != nullptr && m_selectedPlayer->GetTarget() != nullptr) {
+				if (m_enemies[i] == m_selectedPlayer->GetTarget()) SetColor((int)Color::Red);
+				CharacterRender(68 + 23 * i, 18, m_enemies[i]);
+			}
+			else
+				CharacterRender(68 + 23 * i, 18, m_enemies[i]);
+		}
+		SetColor((int)Color::White);
 	}
 }
 
@@ -119,34 +131,36 @@ void Core::CharacterRender(int x, int y, Character* _character) {
 }
 
 void Core::UIRender() {
+	int prevmode = _setmode(_fileno(stdout), _O_TEXT);
+
 	#pragma region UIFrame
 	GotoXY(4, 20);
-	wcout << "¦£";
+	wcout << "â”Œ";
 	for (int i = 0; i < 129; ++i) {
-		wcout << "¦¡";
+		wcout << "â”€";
 	}
-	wcout << "¦¤";
+	wcout << "â”";
 	for (int i = 21; i < 35; ++i) {
 		GotoXY(4, i);
-		wcout << "¦¢";
+		wcout << "â”‚";
 		GotoXY(134, i);
-		wcout << "¦¢";
+		wcout << "â”‚";
 	}
 	GotoXY(4, 35);
-	wcout << "¦¦";
+	wcout << "â””";
 	for (int i = 0; i < 129; ++i) {
-		wcout << "¦¡";
+		wcout << "â”€";
 	}
-	wcout << "¦¥";
+	wcout << "â”˜";
 	#pragma endregion
 
 	memset(_ui, ' ', sizeof(_ui));
 
-	UISet(7, 3, "°ø°Ý");
-	UISet(7, 5, "¸öÅë¹ÚÄ¡±â");
+	UISet(7, 3, "ê³µê²©");
+	UISet(7, 5, "ëª¸í†µë°•ì¹˜ê¸°");
 
 	if(m_currentTurn == TURN::SELECTSKILL)
-		UISet(4, 3 + 2 * _select, "¢º");
+		UISet(4, 3 + 2 * _select, "â–¶");
 
 	for (int y = 0; y < 14; ++y) {
 		GotoXY(6, 21 + y);
@@ -154,6 +168,8 @@ void Core::UIRender() {
 			wcout << _ui[y][x];
 		}
 	}
+
+	int newmode = _setmode(_fileno(stdout), prevmode);
 }
 
 void Core::FrameSync(int frameRate) {
