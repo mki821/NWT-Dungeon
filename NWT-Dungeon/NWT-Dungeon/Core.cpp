@@ -6,7 +6,7 @@
 #include "define.h"
 #include "Player.h"
 #include "Core.h"
-
+#include "Enemy.h"
 using std::wcout;
 
 Core* Core::m_pInstance = nullptr;
@@ -215,4 +215,8 @@ void Core::ChooseIndex(int min, int max, bool horizontal) {
 	else if (_select > max) _select = max;
 
 	_finalSelect = _select;
+}
+
+vector<Player*> Core::GetPlayers() {
+	return m_players;
 }

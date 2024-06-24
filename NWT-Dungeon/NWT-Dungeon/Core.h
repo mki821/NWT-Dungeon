@@ -2,11 +2,11 @@
 #include <vector>
 #include "Character.h"
 #include "Player.h"
-#include "Enemy.h"
 
 enum class TURN {
 	SELECTPLAYER, SELECTENEMY, SELECTSKILL, ENEMYATTACK
 };
+class Enemy;
 
 class Core {
 private:
@@ -43,6 +43,8 @@ private:
 	int _finalSelect = 0;
 	clock_t _lastSelectTime;
 	void ChooseIndex(int min, int max, bool horizontal = true);
+public:
+	std::vector<Player*> GetPlayers();
 private:
 	TURN m_currentTurn;
 	

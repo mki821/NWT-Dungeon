@@ -2,6 +2,7 @@
 #include "console.h"
 #include "Character.h"
 #include "define.h"
+#include "Core.h"
 
 class Enemy : public Character
 {
@@ -10,6 +11,8 @@ public:
 	virtual ~Enemy() = default;
 
 	void Init();	
+	Player* SetTarget();			
+public:
 	virtual void NormalAttack();
 };
 
@@ -25,5 +28,6 @@ class Boss : public Enemy
 public:
 	Boss();
 	void NormalAttack() override;
+	void BossSkil();
 };
 

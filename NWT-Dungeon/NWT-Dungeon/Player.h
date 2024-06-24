@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Enemy.h"
+class Enemy;
 
 enum class PlayerSkillEnum {
 	Attack, Tackle
