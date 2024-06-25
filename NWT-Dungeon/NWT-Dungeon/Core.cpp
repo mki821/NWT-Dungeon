@@ -1,10 +1,10 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <fcntl.h>
 #include <io.h>
 #include "console.h"
-#include "define.h"
-#include "Player.h"
+#include "StateMachine.h"
+#include "SelectPlayerTurn.h"
+#include "SelectEnemyTurn.h"
+#include "SelectSkillTurn.h"
 #include "Core.h"
 #include "Enemy.h"
 using std::wcout;
@@ -29,147 +29,25 @@ bool Core::Init() {
 		m_enemies.push_back(enemy);
 	}
 
-	m_currentTurn = TURN::SELECTPLAYER;
-	_lastSelectTime = clock();
+	m_stateMachine = new StateMachine;
+	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
+
+	m_stateMachine->Init(TURN::SELECTPLAYER);
+
+	renderer = new Renderer;
+	renderer->Init(m_players, &m_selectedPlayer, m_enemies);
 
 	return true;
 }
 
 void Core::Run() {
 	while (true) {
-		Update();
-		Render();
+		m_stateMachine->CurrentState->UpdateState();
+		renderer->Render();
 		FrameSync(60);
 	}
-}
-
-void Core::Update() {
-	switch (m_currentTurn) {
-		case TURN::SELECTPLAYER: {
-			ChooseIndex(0, 2);
-			if (_select == -1) {
-				m_selectedPlayer = m_players[_finalSelect];
-				_select = 0;
-				_finalSelect = 0;
-				m_currentTurn = TURN::SELECTENEMY;
-			}
-		}
-		break;
-		case TURN::SELECTENEMY: {
-			ChooseIndex(0, 2);
-			if (_select == -1) {
-				//m_selectedPlayer->SetTarget(m_enemies[_finalSelect]);
-				_select = 0;
-				_finalSelect = 0;
-				m_currentTurn = TURN::SELECTSKILL;
-			}
-		}
-		break;
-		case TURN::SELECTSKILL: {
-			ChooseIndex(0, 1, false);
-			if (_select == -1) {
-				m_selectedPlayer->Attack((PlayerSkillEnum)_finalSelect);
-				_select = 0;
-				_finalSelect = 0;
-				m_currentTurn = TURN::SELECTPLAYER;
-			}
-		}
-		break;
-		case TURN::ENEMYATTACK:
-			break;
-	}
-}
-
-void Core::Render() {
-	GameRender();
-	UIRender();
-}
-
-void Core::GameRender() {
-	for (int i = 0; i < m_players.size(); ++i) {
-		if (m_currentTurn == TURN::SELECTPLAYER) {
-			if (_finalSelect == i) SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 18, m_players[i]);
-		}
-		else {
-			if (m_players[i] == m_selectedPlayer) SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 18, m_players[i]);
-		}
-		SetColor((int)Color::White);
-	}
-
-	for (int i = 0; i < m_enemies.size(); ++i) {
-		if (m_currentTurn == TURN::SELECTENEMY) {
-			if (_finalSelect == i) SetColor((int)Color::Red);
-			CharacterRender(68 + 23 * i, 18, m_enemies[i]);
-		}
-		else {
-			if (m_selectedPlayer != nullptr && m_selectedPlayer->GetTarget() != nullptr) {
-				if (m_enemies[i] == m_selectedPlayer->GetTarget()) SetColor((int)Color::Red);
-				CharacterRender(68 + 23 * i, 18, m_enemies[i]);
-			}
-			else
-				CharacterRender(68 + 23 * i, 18, m_enemies[i]);
-		}
-		SetColor((int)Color::White);
-	}
-}
-
-void Core::CharacterRender(int x, int y, Character* _character) {
-	std::wstring* character = _character->GetCharacter();
-	int size = _character->GetCharacterSize();
-
-	GotoXY(x + 3, y - 1);
-	wcout << "Health: " << _character->GetHealth();
-	GotoXY(x + 3, y);
-	wcout << "Stamina: " << _character->GetStamina();
-
-	for (int i = size - 1; i >= 0; --i) {
-		GotoXY(x, y - size + i - 2);
-		wcout << character[i];
-	}
-}
-
-void Core::UIRender() {
-	int prevmode = _setmode(_fileno(stdout), _O_TEXT);
-
-	#pragma region UIFrame
-	GotoXY(4, 20);
-	wcout << "┌";
-	for (int i = 0; i < 129; ++i) {
-		wcout << "─";
-	}
-	wcout << "┐";
-	for (int i = 21; i < 35; ++i) {
-		GotoXY(4, i);
-		wcout << "│";
-		GotoXY(134, i);
-		wcout << "│";
-	}
-	GotoXY(4, 35);
-	wcout << "└";
-	for (int i = 0; i < 129; ++i) {
-		wcout << "─";
-	}
-	wcout << "┘";
-	#pragma endregion
-
-	memset(_ui, ' ', sizeof(_ui));
-
-	UISet(7, 3, "공격");
-	UISet(7, 5, "몸통박치기");
-
-	if(m_currentTurn == TURN::SELECTSKILL)
-		UISet(4, 3 + 2 * _select, "▶");
-
-	for (int y = 0; y < 14; ++y) {
-		GotoXY(6, 21 + y);
-		for (int x = 0; x < 128; ++x) {
-			wcout << _ui[y][x];
-		}
-	}
-
-	int newmode = _setmode(_fileno(stdout), prevmode);
 }
 
 void Core::FrameSync(int frameRate) {
@@ -185,36 +63,25 @@ void Core::FrameSync(int frameRate) {
 	}
 }
 
-void Core::UISet(int x, int y, std::string value) {
-	for (int i = 0; i < value.length(); ++i) {
-		_ui[y][x + i] = value[i];
-	}
+vector<Player*> Core::GetPlayers() {
+	return m_players;
 }
 
-void Core::ChooseIndex(int min, int max, bool horizontal) {
-	if (clock() - _lastSelectTime > 100) {
-		_lastSelectTime = clock();
-	}
-	else return;
+vector<Enemy*> Core::GetEnemies() {
+	return m_enemies;
+}
 
-	if (horizontal) {
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000) --_select;
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) ++_select;
+Player* Core::GetSelectedPlayer() {
+	return m_selectedPlayer;
+}
+
+void Core::SetSelectedPlayer(const int index) {
+	if (index == -1) {
+		m_selectedPlayer = nullptr;
 	}
 	else {
-		if (GetAsyncKeyState(VK_UP) & 0x8000) --_select;
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000) ++_select;
+		m_selectedPlayer = m_players[index];
 	}
-
-	if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-		_select = -1;
-		return;
-	}
-
-	if (_select < min) _select = min;
-	else if (_select > max) _select = max;
-
-	_finalSelect = _select;
 }
 
 vector<Player*> Core::GetPlayers() {
