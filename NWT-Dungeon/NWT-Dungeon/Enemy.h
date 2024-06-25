@@ -10,8 +10,7 @@ public:
 	Enemy() = default;
 	virtual ~Enemy() = default;
 
-	void Init();	
-	Player* SetTarget();			
+	void Init();					
 public:
 	virtual void NormalAttack();
 };

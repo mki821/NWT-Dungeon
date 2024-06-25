@@ -19,7 +19,7 @@ void SelectSkillTurn::UpdateState() {
 			m_selectedPlayer->SetTarget(nullptr);
 			m_core->SetSelectedPlayer(-1);
 
-			m_stateMachine->ChangeState(TURN::SELECTPLAYER);
+			m_stateMachine->ChangeState(TURN::ENEMYATTACK);
 		}
 	}
 }

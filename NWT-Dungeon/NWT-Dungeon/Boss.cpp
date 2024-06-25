@@ -8,7 +8,6 @@ void Enemy::Init()
 }
 
 Boss::Boss() {}
-
 void Boss::NormalAttack()
 {
 	
