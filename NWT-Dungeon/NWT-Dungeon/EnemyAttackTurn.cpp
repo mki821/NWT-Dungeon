@@ -5,6 +5,8 @@ EnemyAttackTurn::EnemyAttackTurn(Core* core, StateMachine* stateMachine)
 {
 	m_core = core;
 	m_stateMachine = stateMachine;
+
+	srand(unsigned int(time(NULL)));
 }
 
 void EnemyAttackTurn::Enter()
