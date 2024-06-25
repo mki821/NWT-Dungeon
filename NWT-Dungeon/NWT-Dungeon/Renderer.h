@@ -5,7 +5,7 @@
 class Renderer
 {
 public:
-	void Init(vector<Player*> players, Player** selectedPlayer, vector<Enemy*> enemies);
+	void Init(std::vector<Player*> players, Player** selectedPlayer, vector<Enemy*> enemies);	
 	void Render();
 private:
 	void GameRender();
@@ -17,8 +17,8 @@ private:
 public:
 	int select = 0;
 private:
-	vector<Player*> m_players;
+	std::vector<Player*> m_players;
 	Player** m_selectedPlayer;
 
-	vector<Enemy*> m_enemies;
+	std::vector<Enemy*> m_enemies;
 };

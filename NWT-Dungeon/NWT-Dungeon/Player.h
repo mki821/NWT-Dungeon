@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Character.h"
-#include "Enemy.h"
+class Enemy;
 
 struct PlayerSkill {
 	string name;
@@ -23,8 +23,8 @@ private:
 	void CommonAttack();
 	const int _commonAttackStamina = 1;
 public:
-	vector<PlayerSkill>* GetSkills();
+	std::vector<PlayerSkill>* GetSkills();
 	PlayerSkill GetSkillInfo(int index);
 private:
-	vector<PlayerSkill> m_skills;
+	std::vector<PlayerSkill> m_skills;
 };

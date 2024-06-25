@@ -16,6 +16,6 @@ void SelectEnemyTurn::UpdateState() {
 		m_core->GetSelectedPlayer()->SetTarget(m_enemies[m_core->renderer->select]);
 		m_core->renderer->select = 0;
 
-		m_stateMachine->ChangeState(TURN::SELECTSKILL);
+		m_stateMachine->ChangeState(TURN::SELECTSKILL);	
 	}
 }

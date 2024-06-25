@@ -6,7 +6,7 @@
 #include "SelectEnemyTurn.h"
 #include "SelectSkillTurn.h"
 #include "Core.h"
-
+#include "Enemy.h"
 using std::wcout;
 
 Core* Core::m_pInstance = nullptr;
@@ -86,4 +86,8 @@ bool Core::SetSelectedPlayer(const int index) {
 	m_selectedPlayer = m_players[index];
 
 	return true;
+}
+
+vector<Player*> Core::GetPlayers() {
+	return m_players;
 }
