@@ -75,11 +75,15 @@ Player* Core::GetSelectedPlayer() {
 	return m_selectedPlayer;
 }
 
-void Core::SetSelectedPlayer(const int index) {
+bool Core::SetSelectedPlayer(const int index) {
 	if (index == -1) {
 		m_selectedPlayer = nullptr;
+		return true;
 	}
-	else {
-		m_selectedPlayer = m_players[index];
-	}
+
+	if (m_players[index]->isAttacked) return false;
+
+	m_selectedPlayer = m_players[index];
+
+	return true;
 }

@@ -37,7 +37,7 @@ public:
 	vector<Enemy*> GetEnemies();
 
 	Player* GetSelectedPlayer();
-	void SetSelectedPlayer(int index);
+	bool SetSelectedPlayer(int index);
 private:
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;

@@ -19,8 +19,12 @@ void Renderer::Render() {
 void Renderer::GameRender() {
 
 	for (int i = 0; i < m_players.size(); ++i) {
-		if(*m_selectedPlayer == nullptr) {
-			if (select == i) SetColor((int)Color::Red);
+		if (*m_selectedPlayer == nullptr && select == i) {
+			SetColor((int)Color::Red);
+			CharacterRender(6 + 20 * i, 18, m_players[i]);
+		}
+		else if (m_players[i]->isAttacked) {
+			SetColor((int)Color::Blue);
 			CharacterRender(6 + 20 * i, 18, m_players[i]);
 		}
 		else {

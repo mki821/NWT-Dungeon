@@ -9,9 +9,10 @@ SelectPlayerTurn::SelectPlayerTurn(Core* core, StateMachine* stateMachine) {
 
 void SelectPlayerTurn::UpdateState() {
 	if (ChooseIndex(0, 2, true, m_core->renderer->select)) {
-		m_core->SetSelectedPlayer(m_core->renderer->select);
-		m_core->renderer->select = 0;
+		if (m_core->SetSelectedPlayer(m_core->renderer->select)) {
+			m_core->renderer->select = 0;
 
-		m_stateMachine->ChangeState(TURN::SELECTENEMY);
+			m_stateMachine->ChangeState(TURN::SELECTENEMY);
+		}
 	}
 }

@@ -15,6 +15,8 @@ public:
 	Enemy* GetTarget();
 	void SetTarget(Enemy* target);
 	bool Attack(int index);
+public:
+	bool isAttacked = false;
 private:
 	Enemy* m_target;
 private:
