@@ -133,7 +133,13 @@
     <ClInclude Include="define.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SelectEnemyTurn.h" />
+    <ClInclude Include="SelectPlayerTurn.h" />
+    <ClInclude Include="SelectSkillTurn.h" />
+    <ClInclude Include="StateMachine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boss.cpp" />
@@ -142,11 +148,17 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SelectEnemyTurn.cpp" />
+    <ClCompile Include="SelectPlayerTurn.cpp" />
+    <ClCompile Include="SelectSkillTurn.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
     <ClCompile Include="TestMainnnnnnnnnnnn.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
