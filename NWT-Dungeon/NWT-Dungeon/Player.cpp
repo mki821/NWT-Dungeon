@@ -12,6 +12,8 @@ void Player::Init() {
 
 	m_character = MEN;
 	m_characterSize = 11;
+
+	m_skills.push_back({ "일반 공격", 0, 3 });
 }
 
 Enemy* Player::GetTarget() {
@@ -22,20 +24,12 @@ void Player::SetTarget(Enemy* target) {
 	m_target = target;
 }
 
-bool Player::Attack(PlayerSkillEnum way) {
-	switch (way) {
-		case PlayerSkillEnum::Attack:
-			if (SetStamina(m_stamina - _commonAttackStamina)) {
-				CommonAttack();
-				return true;
-			}
-			return false;
-		case PlayerSkillEnum::Tackle:
-			if (SetStamina(m_stamina - _tackleStamina)) {
-				Tackle();
-				return true;
-			}
-			return false;
+bool Player::Attack(int index) {
+	PlayerSkill currentSkill = m_skills[index];
+
+	if (SetStamina(m_stamina - currentSkill.useStamina)) {
+		m_target->ApplyDamage(currentSkill.attack);
+		return true;
 	}
 
 	return false;
@@ -48,9 +42,11 @@ void Player::CommonAttack() {
 	//Animation
 }
 
-void Player::Tackle() {
-	m_target->ApplyDamage(m_attack * 1.1);
-	GotoXY(0, 0);
+vector<PlayerSkill>* Player::GetSkills()
+{
+	return &m_skills;
+}
 
-	//Animation
+PlayerSkill Player::GetSkillInfo(int index) {
+	return m_skills[index];
 }

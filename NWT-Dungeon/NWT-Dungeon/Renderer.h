@@ -5,6 +5,7 @@
 class Renderer
 {
 public:
+	void Init(vector<Player*> players, Player** selectedPlayer, vector<Enemy*> enemies);
 	void Render();
 private:
 	void GameRender();
@@ -14,12 +15,10 @@ private:
 private:
 	char _ui[14][128];
 public:
-	void Init(vector<Player*> players, Player*& playerRef, vector<Enemy*> enemies);
+	int select = 0;
 private:
 	vector<Player*> m_players;
-	Player* m_selectedPlayer;
+	Player** m_selectedPlayer;
 
 	vector<Enemy*> m_enemies;
-
-	int m_select = 0;
 };

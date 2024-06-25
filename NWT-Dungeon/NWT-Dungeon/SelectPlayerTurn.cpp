@@ -1,5 +1,5 @@
-#include "GameLogic.h"
 #include "Core.h"
+#include "GameLogic.h"
 #include "SelectPlayerTurn.h"
 
 SelectPlayerTurn::SelectPlayerTurn(Core* core, StateMachine* stateMachine) {
@@ -8,9 +8,10 @@ SelectPlayerTurn::SelectPlayerTurn(Core* core, StateMachine* stateMachine) {
 }
 
 void SelectPlayerTurn::UpdateState() {
-	if (ChooseIndex(0, 2, true, m_select)) {
-		m_core->SetSelectedPlayer(m_select);
-		m_select = 0;
+	if (ChooseIndex(0, 2, true, m_core->renderer->select)) {
+		m_core->SetSelectedPlayer(m_core->renderer->select);
+		m_core->renderer->select = 0;
+
 		m_stateMachine->ChangeState(TURN::SELECTENEMY);
 	}
 }

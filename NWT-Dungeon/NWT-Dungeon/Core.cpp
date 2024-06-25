@@ -1,12 +1,10 @@
 ﻿#include <iostream>
-#include <fstream>
-#include <fcntl.h>
 #include <io.h>
 #include "console.h"
-#include "define.h"
-#include "Player.h"
 #include "StateMachine.h"
 #include "SelectPlayerTurn.h"
+#include "SelectEnemyTurn.h"
+#include "SelectSkillTurn.h"
 #include "Core.h"
 
 using std::wcout;
@@ -33,11 +31,13 @@ bool Core::Init() {
 
 	m_stateMachine = new StateMachine;
 	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
 
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
-	m_renderer = new Renderer;
-	m_renderer->Init(m_players, m_selectedPlayer, m_enemies);
+	renderer = new Renderer;
+	renderer->Init(m_players, &m_selectedPlayer, m_enemies);
 
 	return true;
 }
@@ -45,33 +45,8 @@ bool Core::Init() {
 void Core::Run() {
 	while (true) {
 		m_stateMachine->CurrentState->UpdateState();
-		m_renderer->Render();
+		renderer->Render();
 		FrameSync(60);
-
-		//case TURN::SELECTENEMY: {
-		//	ChooseIndex(0, 2);
-		//	if (_select == -1) {
-		//		m_selectedPlayer->SetTarget(m_enemies[_finalSelect]);
-		//		_select = 0;
-		//		_finalSelect = 0;
-		//		m_currentTurn = TURN::SELECTSKILL;
-		//	}
-		//}
-		//break;
-		//case TURN::SELECTSKILL: {
-		//	ChooseIndex(0, 1, false);
-		//	if (_select == -1) {
-		//		m_selectedPlayer->Attack((PlayerSkillEnum)_finalSelect);
-		//		_select = 0;
-		//		_finalSelect = 0;
-
-		//		m_selectedPlayer->SetTarget(nullptr);
-		//		m_selectedPlayer = nullptr;
-
-		//		m_currentTurn = TURN::SELECTPLAYER;
-		//	}
-		//}
-		//break;
 	}
 }
 
@@ -88,10 +63,23 @@ void Core::FrameSync(int frameRate) {
 	}
 }
 
-void Core::SetSelectedPlayer(int index) {
-	m_selectedPlayer = m_players[index];
-}
-
 vector<Player*> Core::GetPlayers() {
 	return m_players;
+}
+
+vector<Enemy*> Core::GetEnemies() {
+	return m_enemies;
+}
+
+Player* Core::GetSelectedPlayer() {
+	return m_selectedPlayer;
+}
+
+void Core::SetSelectedPlayer(const int index) {
+	if (index == -1) {
+		m_selectedPlayer = nullptr;
+	}
+	else {
+		m_selectedPlayer = m_players[index];
+	}
 }

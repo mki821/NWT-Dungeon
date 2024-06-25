@@ -10,7 +10,5 @@ public:
 	SelectPlayerTurn(Core* core, StateMachine* stateMachine);
 public:
 	void UpdateState() override;
-private:
-	int m_select = 0;
 };
 

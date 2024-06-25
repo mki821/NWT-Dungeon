@@ -42,14 +42,20 @@
     <ClInclude Include="StateMachine.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SelectPlayerTurn.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="GameLogic.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectPlayerTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectEnemyTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectSkillTurn.h">
+      <Filter>소스 파일\Turn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -86,14 +92,20 @@
     <ClCompile Include="StateMachine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelectPlayerTurn.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="GameLogic.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectPlayerTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectEnemyTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectSkillTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

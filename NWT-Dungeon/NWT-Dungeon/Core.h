@@ -28,11 +28,15 @@ public:
 	void Run();
 private:
 	void FrameSync(int frameRate);
+public:
+	Renderer* renderer;
 private:
 	StateMachine* m_stateMachine;
-	Renderer* m_renderer;
 public:
 	vector<Player*> GetPlayers();
+	vector<Enemy*> GetEnemies();
+
+	Player* GetSelectedPlayer();
 	void SetSelectedPlayer(int index);
 private:
 	std::vector<Player*> m_players;
