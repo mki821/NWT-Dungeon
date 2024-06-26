@@ -29,6 +29,7 @@ bool Player::Attack(int index) {
 
 	if (SetStamina(m_stamina - currentSkill.useStamina)) {
 		m_target->ApplyDamage(currentSkill.attack);
+		isAttacked = true;
 		return true;
 	}
 

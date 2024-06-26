@@ -5,6 +5,7 @@
 #include "SelectPlayerTurn.h"
 #include "SelectEnemyTurn.h"
 #include "SelectSkillTurn.h"
+#include "EnemyAttackTurn.h"
 #include "Core.h"
 #include "Enemy.h"
 using std::wcout;
@@ -24,7 +25,7 @@ bool Core::Init() {
 	}
 
 	for (int i = 0; i < 3; ++i) {
-		Enemy* enemy = new Enemy;
+		Enemy* enemy = new TrashMob;
 		enemy->Init();
 		m_enemies.push_back(enemy);
 	}
@@ -33,6 +34,7 @@ bool Core::Init() {
 	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(this, m_stateMachine));
 	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
 	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(this, m_stateMachine));
 
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
@@ -75,15 +77,15 @@ Player* Core::GetSelectedPlayer() {
 	return m_selectedPlayer;
 }
 
-void Core::SetSelectedPlayer(const int index) {
+bool Core::SetSelectedPlayer(const int index) {
 	if (index == -1) {
 		m_selectedPlayer = nullptr;
+		return true;
 	}
-	else {
-		m_selectedPlayer = m_players[index];
-	}
-}
 
-vector<Player*> Core::GetPlayers() {
-	return m_players;
+	if (m_players[index]->isAttacked) return false;
+
+	m_selectedPlayer = m_players[index];
+
+	return true;
 }

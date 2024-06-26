@@ -1,8 +1,8 @@
 #pragma once
 #include "console.h"
 #include "Character.h"
-#include "define.h"
-#include "Core.h"
+
+class Core;
 
 class Enemy : public Character
 {
@@ -10,23 +10,21 @@ public:
 	Enemy() = default;
 	virtual ~Enemy() = default;
 
-	void Init();					
-public:
-	virtual void NormalAttack();
+	virtual void Init();
 };
 
 class TrashMob : public Enemy
 {
 public:
 	TrashMob();	
-	void NormalAttack() override;	
+	void Init() override;
 };
 
 class Boss : public Enemy
 {
 public:
 	Boss();
-	void NormalAttack() override;
+	void Init() override;
 	void BossSkil();
 };
 
