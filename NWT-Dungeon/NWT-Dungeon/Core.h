@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Enemy.h"
 
+using std::vector;
+
 class Core {
 private:
 	Core() = default;
@@ -37,7 +39,7 @@ public:
 	vector<Enemy*> GetEnemies();
 
 	Player* GetSelectedPlayer();
-	void SetSelectedPlayer(int index);
+	bool SetSelectedPlayer(int index);
 private:
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;

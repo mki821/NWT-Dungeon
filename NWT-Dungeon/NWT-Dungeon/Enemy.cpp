@@ -1,3 +1,3 @@
 #include "Enemy.h"
 
-void Enemy::NormalAttack() {}
+void Enemy::Init() { }

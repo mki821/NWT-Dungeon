@@ -9,10 +9,12 @@ SelectSkillTurn::SelectSkillTurn(Core* core, StateMachine* stateMachine) {
 
 void SelectSkillTurn::Enter() {
 	m_selectedPlayer = m_core->GetSelectedPlayer();
+
+	m_max = (int)m_selectedPlayer->GetSkills()->size() - 1;
 }
 
 void SelectSkillTurn::UpdateState() {
-	if (ChooseIndex(0, 1, false, m_core->renderer->select)) {
+	if (ChooseIndex(0, m_max, false, m_core->renderer->select)) {
 		if (m_selectedPlayer->Attack(m_core->renderer->select)) {
 			m_core->renderer->select = 0;
 

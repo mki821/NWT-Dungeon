@@ -1,6 +1,8 @@
+#include "define.h"
+#include "Player.h"
 #include "Enemy.h"
 
-void Enemy::Init()
+void TrashMob::Init()
 {
 	m_attack = 5;
 	m_health = 3;
