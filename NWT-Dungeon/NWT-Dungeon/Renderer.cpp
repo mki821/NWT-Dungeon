@@ -33,7 +33,7 @@ void Renderer::GameRender() {
 	for (int i = 0; i < m_enemies.size(); ++i) {
 		if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() == nullptr) {
 			if (select == i) SetColor((int)Color::Red);
-			CharacterRender(68 + 23 * i, 18, m_enemies[i]);
+			CharacterRender(68 + 23 * i, 18, m_enemies[i]);		
 		}
 		else {
 			if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() != nullptr) {

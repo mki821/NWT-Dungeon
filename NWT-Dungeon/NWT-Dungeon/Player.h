@@ -1,10 +1,11 @@
 #pragma once
 
 #include "Character.h"
+
 class Enemy;
 
 struct PlayerSkill {
-	string name;
+	std::string name;
 	int useStamina;
 	int attack;
 };

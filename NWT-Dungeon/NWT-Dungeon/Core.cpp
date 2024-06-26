@@ -83,7 +83,3 @@ void Core::SetSelectedPlayer(const int index) {
 		m_selectedPlayer = m_players[index];
 	}
 }
-
-vector<Player*> Core::GetPlayers() {
-	return m_players;
-}
