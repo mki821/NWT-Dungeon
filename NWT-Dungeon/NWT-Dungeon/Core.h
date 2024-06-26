@@ -6,6 +6,8 @@
 #include "Player.h"
 #include "Enemy.h"
 
+using std::vector;
+
 class Core {
 private:
 	Core() = default;

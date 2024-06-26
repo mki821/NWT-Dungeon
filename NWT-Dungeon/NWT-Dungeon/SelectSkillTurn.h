@@ -13,5 +13,7 @@ public:
 	void UpdateState() override;
 private:
 	Player* m_selectedPlayer = nullptr;
+private:
+	int m_max = 0;
 };
 

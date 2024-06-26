@@ -1,13 +1,17 @@
 #pragma once
 
+#include <vector>
 #include "Character.h"
+
+using std::vector;
+
 class Enemy;
 
-struct PlayerSkill {
-	string name;
+typedef struct _playerSkill {
+	std::string name;
 	int useStamina;
 	int attack;
-};
+} PlayerSkill, *PPlayerSkill;
 
 class Player : public Character {
 public:
@@ -23,8 +27,8 @@ private:
 	void CommonAttack();
 	const int _commonAttackStamina = 1;
 public:
-	std::vector<PlayerSkill>* GetSkills();
+	vector<PlayerSkill>* GetSkills();
 	PlayerSkill GetSkillInfo(int index);
 private:
-	std::vector<PlayerSkill> m_skills;
+	vector<PlayerSkill> m_skills;
 };

@@ -134,6 +134,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyAttackTurn.h" />
     <ClInclude Include="EnemyManager.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SelectEnemyTurn.h" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyAttackTurn.cpp" />
     <ClCompile Include="EnemyManager.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ExcludedFromBuild>

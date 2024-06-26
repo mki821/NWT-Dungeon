@@ -1,16 +1,13 @@
+#include "define.h"
 #include "Enemy.h"
 
-void Enemy::Init()
+Boss::Boss() {}
+
+void Boss::Init()
 {
 	m_attack = 10;
 	m_maxHealth = 10;
 	m_maxStamina = 10;
-}
-
-Boss::Boss() {}
-void Boss::NormalAttack()
-{
-	
 }
 
 void Boss::BossSkil()

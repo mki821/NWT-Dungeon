@@ -13,13 +13,13 @@ void EnemyAttackTurn::Enter()
 {
 	Core* core = m_core->GetInst();
 
-	int randEnemy = rand() % core->GetEnemies().size() - 1;
+	int randEnemy = rand() % (core->GetEnemies().size() - 1);
 	Enemy* attackEnemy = core->GetEnemies()[randEnemy];	
 
-	int randPlayer = rand() % core->GetPlayers().size() - 1;
+	int randPlayer = rand() % (core->GetPlayers().size() - 1);
 	Player* targetPlayer = core->GetPlayers()[randPlayer];
 
 	targetPlayer->ApplyDamage(attackEnemy->GetAttack());
 
-	m_stateMachine->ChangeState(TURN::SELECTPLAYER);		
+	m_stateMachine->ChangeState(TURN::SELECTPLAYER);
 }
