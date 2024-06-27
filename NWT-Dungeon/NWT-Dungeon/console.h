@@ -1,8 +1,8 @@
 #pragma once
 #include "define.h"
 void FullScreen();
-void GotoXY(int x, int y);
-BOOL GotoPos(int x, int y);
+void GotoXY(short x, short y);
+BOOL GotoPos(short x, short y);
 COORD CursorPosition();
 void CursorVisible(bool visible, DWORD size);
 void SetColor(int textColor = 15, int bgColor = 0);

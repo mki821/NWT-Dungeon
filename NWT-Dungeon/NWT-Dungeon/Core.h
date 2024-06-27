@@ -40,6 +40,9 @@ public:
 
 	Player* GetSelectedPlayer();
 	bool SetSelectedPlayer(int index);
+
+	bool CanPlayerAttack();
+	void ResetPlayersAttack();
 private:
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;
