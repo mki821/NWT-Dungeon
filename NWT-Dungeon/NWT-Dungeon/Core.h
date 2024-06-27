@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <algorithm>
 #include "StateMachine.h"
 #include "Renderer.h"
 #include "Character.h"
