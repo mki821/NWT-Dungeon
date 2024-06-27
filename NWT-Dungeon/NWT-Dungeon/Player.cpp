@@ -6,13 +6,6 @@
 #include "Player.h"
 
 void Player::Init() {
-	m_health = m_maxHealth;
-	m_attack = 3;
-	m_stamina = m_maxStamina;
-
-	m_character = MEN;
-	m_characterSize = 11;
-
 	m_skills.push_back({ "일반 공격", 0, 3 });
 }
 
@@ -43,8 +36,7 @@ void Player::CommonAttack() {
 	//Animation
 }
 
-vector<PlayerSkill>* Player::GetSkills()
-{
+vector<PlayerSkill>* Player::GetSkills() {
 	return &m_skills;
 }
 

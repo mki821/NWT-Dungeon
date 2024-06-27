@@ -21,7 +21,12 @@ void SelectSkillTurn::UpdateState() {
 			m_selectedPlayer->SetTarget(nullptr);
 			m_core->SetSelectedPlayer(-1);
 
-			m_stateMachine->ChangeState(TURN::ENEMYATTACK);
+			if (m_core->CanPlayerAttack())
+				m_stateMachine->ChangeState(TURN::SELECTPLAYER);
+			else {
+				m_core->ResetPlayersAttack();
+				m_stateMachine->ChangeState(TURN::ENEMYATTACK);
+			}
 		}
 	}
 }

@@ -136,6 +136,9 @@
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerBear.h" />
+    <ClInclude Include="PlayerCat.h" />
+    <ClInclude Include="PlayerMen.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SelectEnemyTurn.h" />
     <ClInclude Include="SelectPlayerTurn.h" />
@@ -156,6 +159,9 @@
       </ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerBear.cpp" />
+    <ClCompile Include="PlayerCat.cpp" />
+    <ClCompile Include="PlayerMen.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SelectEnemyTurn.cpp" />
     <ClCompile Include="SelectPlayerTurn.cpp" />

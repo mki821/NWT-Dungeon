@@ -9,14 +9,14 @@ void FullScreen() {
 	//::SendMessage(GetConsoleWindow(), WM_SYSKEYDOWN, VK_RETURN, 0x20000000);
 }
 
-void GotoXY(int x, int y) {
+void GotoXY(short x, short y) {
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	COORD cur = { x, y };
 
 	SetConsoleCursorPosition(hOut, cur);
 }
 
-BOOL GotoPos(int x, int y) {
+BOOL GotoPos(short x, short y) {
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE); //콘솔창 핸들
 	COORD cur = { x * 2, y }; //커서관련 구조체
 

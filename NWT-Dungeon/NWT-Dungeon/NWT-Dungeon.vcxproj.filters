@@ -13,15 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Turn">
+      <UniqueIdentifier>{4dd6b20e-9993-42ab-ac57-81704f1d519c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Player">
+      <UniqueIdentifier>{ea7203be-8906-4f53-a476-7163618ec6d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
@@ -39,23 +42,35 @@
     <ClInclude Include="Renderer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SelectEnemyTurn.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectPlayerTurn.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="SelectSkillTurn.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="StateMachine.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyAttackTurn.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GameLogic.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyAttackTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectEnemyTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectPlayerTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectSkillTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerMen.h">
+      <Filter>소스 파일\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBear.h">
+      <Filter>소스 파일\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerCat.h">
+      <Filter>소스 파일\Player</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,9 +81,6 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TestMainnnnnnnnnnnn.cpp">
@@ -92,23 +104,35 @@
     <ClCompile Include="Renderer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SelectEnemyTurn.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectPlayerTurn.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SelectSkillTurn.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="StateMachine.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyAttackTurn.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GameLogic.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyAttackTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectEnemyTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectPlayerTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectSkillTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerMen.cpp">
+      <Filter>소스 파일\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBear.cpp">
+      <Filter>소스 파일\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerCat.cpp">
+      <Filter>소스 파일\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

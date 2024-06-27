@@ -15,7 +15,7 @@ typedef struct _playerSkill {
 
 class Player : public Character {
 public:
-	void Init();
+	virtual void Init();
 	Enemy* GetTarget();
 	void SetTarget(Enemy* target);
 	bool Attack(int index);
@@ -29,6 +29,8 @@ private:
 public:
 	vector<PlayerSkill>* GetSkills();
 	PlayerSkill GetSkillInfo(int index);
-private:
+protected:
 	vector<PlayerSkill> m_skills;
 };
+
+class PlayerMen;

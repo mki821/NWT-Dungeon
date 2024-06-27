@@ -1,14 +1,15 @@
-﻿#include <iostream>
-#include <io.h>
+﻿#include <io.h>
 #include "console.h"
 #include "StateMachine.h"
 #include "SelectPlayerTurn.h"
 #include "SelectEnemyTurn.h"
 #include "SelectSkillTurn.h"
 #include "EnemyAttackTurn.h"
-#include "Core.h"
+#include "PlayerMen.h"
+#include "PlayerBear.h"
+#include "PlayerCat.h"
 #include "Enemy.h"
-using std::wcout;
+#include "Core.h"
 
 Core* Core::m_pInstance = nullptr;
 
@@ -18,8 +19,18 @@ bool Core::Init() {
 	CursorVisible(false, 1);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 
-	for (int i = 0; i < 3; ++i) {
-		Player* player = new Player;
+	{
+		Player* player = new PlayerMen;
+		player->Init();
+		m_players.push_back(player);
+	}
+	{
+		Player* player = new PlayerBear;
+		player->Init();
+		m_players.push_back(player);
+	}
+	{
+		Player* player = new PlayerCat;
 		player->Init();
 		m_players.push_back(player);
 	}
@@ -88,4 +99,18 @@ bool Core::SetSelectedPlayer(const int index) {
 	m_selectedPlayer = m_players[index];
 
 	return true;
+}
+
+bool Core::CanPlayerAttack() {
+	for (int i = 0; i < m_players.size(); ++i) {
+		if (!m_players[i]->isAttacked) return true;
+	}
+
+	return false;
+}
+
+void Core::ResetPlayersAttack() {
+	for (int i = 0; i < m_players.size(); ++i) {
+		m_players[i]->isAttacked = false;
+	}
 }
