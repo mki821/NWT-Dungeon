@@ -9,6 +9,10 @@ int Character::GetCharacterSize()
     return m_characterSize;
 }
 
+int Character::GetCharacterOffset() {
+	return m_characterOffset;
+}
+
 void Character::ApplyDamage(int damage) {
 	SetHealth(m_health - damage);
 }

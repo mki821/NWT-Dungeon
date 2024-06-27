@@ -7,9 +7,11 @@ class Character
 public:
 	std::wstring* GetCharacter();
 	int GetCharacterSize();
+	int GetCharacterOffset();
 protected:
 	std::wstring* m_character;
 	int m_characterSize;
+	int m_characterOffset = 0;
 public:
 	void ApplyDamage(int damage);
 public:
