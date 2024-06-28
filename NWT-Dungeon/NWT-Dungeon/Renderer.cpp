@@ -4,7 +4,7 @@
 #include "Character.h"
 #include "Renderer.h"
 
-void Renderer::Init(vector<Player*> players, Player** selectedPlayer, vector<Enemy*> enemies) {
+void Renderer::Init(vector<Player*>* players, Player** selectedPlayer, vector<Enemy*>* enemies) {
 	m_players = players;
 	m_selectedPlayer = selectedPlayer;
 
@@ -18,34 +18,34 @@ void Renderer::Render() {
 
 void Renderer::GameRender() {
 
-	for (int i = 0; i < m_players.size(); ++i) {
+	for (int i = 0; i < m_players->size(); ++i) {
 		if (*m_selectedPlayer == nullptr && select == i) {
 			SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 21, m_players[i]);
+			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
 		}
-		else if (m_players[i]->isAttacked) {
+		else if ((*m_players)[i]->isAttacked) {
 			SetColor((int)Color::Blue);
-			CharacterRender(6 + 20 * i, 21, m_players[i]);
+			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
 		}
 		else {
-			if (m_players[i] == *m_selectedPlayer) SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 21, m_players[i]);
+			if ((*m_players)[i] == *m_selectedPlayer) SetColor((int)Color::Red);
+			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
 		}
 		SetColor((int)Color::White);
 	}
 
-	for (int i = 0; i < m_enemies.size(); ++i) {
+	for (int i = 0; i < m_enemies->size(); ++i) {
 		if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() == nullptr) {
 			if (select == i) SetColor((int)Color::Red);
-			CharacterRender(68 + 23 * i, 21, m_enemies[i]);
+			CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
 		}
 		else {
 			if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() != nullptr) {
-				if (m_enemies[i] == (*m_selectedPlayer)->GetTarget()) SetColor((int)Color::Red);
-				CharacterRender(68 + 23 * i, 21, m_enemies[i]);
+				if ((*m_enemies)[i] == (*m_selectedPlayer)->GetTarget()) SetColor((int)Color::Red);
+				CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
 			}
 			else
-				CharacterRender(68 + 23 * i, 21, m_enemies[i]);
+				CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
 		}
 		SetColor((int)Color::White);
 	}
@@ -95,7 +95,7 @@ void Renderer::UIRender() {
 
 	memset(_ui, ' ', sizeof(_ui));
 
-	vector<PlayerSkill>* selectedPlayerSkills = m_players[select]->GetSkills();
+	vector<PlayerSkill>* selectedPlayerSkills = (*m_players)[select]->GetSkills();
 
 	if(*m_selectedPlayer != nullptr)
 		selectedPlayerSkills = (*m_selectedPlayer)->GetSkills();

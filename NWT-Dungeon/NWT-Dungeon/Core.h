@@ -36,7 +36,7 @@ private:
 	StateMachine* m_stateMachine;
 public:
 	vector<Player*> GetPlayers();
-	vector<Enemy*> GetEnemies();
+	vector<Enemy*>* GetEnemies();
 
 	Player* GetSelectedPlayer();
 	bool SetSelectedPlayer(int index);

@@ -13,6 +13,7 @@ public:
 	void UpdateState() override;
 private:
 	Player* m_selectedPlayer = nullptr;
+	vector<Enemy*>* m_enemies;
 private:
 	int m_max = 0;
 };

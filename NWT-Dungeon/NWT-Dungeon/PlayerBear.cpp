@@ -12,7 +12,7 @@ void PlayerBear::Init() {
 
 	m_character = BEAR;
 	m_characterSize = 14;
-	m_characterOffset = 4;
+	m_characterOffset = 2;
 
 	m_skills.push_back({ "할퀴기", 2, 6 });
 	m_skills.push_back({ "누르기", 3, 8 });

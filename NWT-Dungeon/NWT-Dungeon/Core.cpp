@@ -5,6 +5,7 @@
 #include "SelectEnemyTurn.h"
 #include "SelectSkillTurn.h"
 #include "EnemyAttackTurn.h"
+#include "NextStageTurn.h"
 #include "PlayerMen.h"
 #include "PlayerBear.h"
 #include "PlayerCat.h"
@@ -46,11 +47,12 @@ bool Core::Init() {
 	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
 	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
 	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::NEXTSTAGE, new NextStageTurn(this, m_stateMachine));
 
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
 	renderer = new Renderer;
-	renderer->Init(m_players, &m_selectedPlayer, m_enemies);
+	renderer->Init(&m_players, &m_selectedPlayer, &m_enemies);
 
 	return true;
 }
@@ -80,8 +82,8 @@ vector<Player*> Core::GetPlayers() {
 	return m_players;
 }
 
-vector<Enemy*> Core::GetEnemies() {
-	return m_enemies;
+vector<Enemy*> *Core::GetEnemies() {
+	return &m_enemies;
 }
 
 Player* Core::GetSelectedPlayer() {

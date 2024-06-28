@@ -12,6 +12,6 @@ public:
 	void Enter() override;
 	void UpdateState() override;
 private:
-	vector<Enemy*> m_enemies;
+	vector<Enemy*>* m_enemies;
 };
 

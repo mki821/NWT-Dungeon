@@ -135,6 +135,7 @@
     <ClInclude Include="EnemyAttackTurn.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="NextStageTurn.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBear.h" />
     <ClInclude Include="PlayerCat.h" />
@@ -158,6 +159,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="NextStageTurn.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBear.cpp" />
     <ClCompile Include="PlayerCat.cpp" />

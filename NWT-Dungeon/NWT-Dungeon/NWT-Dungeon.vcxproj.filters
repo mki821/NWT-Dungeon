@@ -72,6 +72,9 @@
     <ClInclude Include="PlayerCat.h">
       <Filter>소스 파일\Player</Filter>
     </ClInclude>
+    <ClInclude Include="NextStageTurn.h">
+      <Filter>소스 파일\Turn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -133,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="PlayerCat.cpp">
       <Filter>소스 파일\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="NextStageTurn.cpp">
+      <Filter>소스 파일\Turn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -13,8 +13,8 @@ void EnemyAttackTurn::Enter()
 {
 	Core* core = m_core->GetInst();
 
-	int randEnemy = rand() % (core->GetEnemies().size() - 1);
-	Enemy* attackEnemy = core->GetEnemies()[randEnemy];	
+	int randEnemy = rand() % (core->GetEnemies()->size() - 1);
+	Enemy* attackEnemy = (*(core->GetEnemies()))[randEnemy];
 
 	int randPlayer = rand() % (core->GetPlayers().size() - 1);
 	Player* targetPlayer = core->GetPlayers()[randPlayer];
