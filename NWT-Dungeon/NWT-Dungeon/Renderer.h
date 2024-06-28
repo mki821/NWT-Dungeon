@@ -6,7 +6,7 @@
 class Renderer
 {
 public:
-	void Init(std::vector<Player*>* players, Player** selectedPlayer, vector<Enemy*>* enemies);	
+	void Init(Core* core);	
 	void Render();
 private:
 	void GameRender();
@@ -18,6 +18,10 @@ private:
 public:
 	int select = 0;
 private:
+	Core* m_core;
+
+	int* m_stageNum;
+
 	std::vector<Player*>* m_players;
 	Player** m_selectedPlayer;
 

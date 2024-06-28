@@ -16,8 +16,8 @@ void EnemyAttackTurn::Enter()
 	int randEnemy = rand() % (core->GetEnemies()->size() - 1);
 	Enemy* attackEnemy = (*(core->GetEnemies()))[randEnemy];
 
-	int randPlayer = rand() % (core->GetPlayers().size() - 1);
-	Player* targetPlayer = core->GetPlayers()[randPlayer];
+	int randPlayer = rand() % (core->GetPlayers()->size() - 1);
+	Player* targetPlayer = (*core->GetPlayers())[randPlayer];
 
 	targetPlayer->ApplyDamage(attackEnemy->GetAttack());
 

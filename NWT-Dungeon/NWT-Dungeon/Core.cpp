@@ -52,7 +52,7 @@ bool Core::Init() {
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
 	renderer = new Renderer;
-	renderer->Init(&m_players, &m_selectedPlayer, &m_enemies);
+	renderer->Init(this);
 
 	return true;
 }
@@ -78,16 +78,36 @@ void Core::FrameSync(int frameRate) {
 	}
 }
 
-vector<Player*> Core::GetPlayers() {
-	return m_players;
+vector<Player*>* Core::GetPlayers() {
+	return &m_players;
 }
 
-vector<Enemy*> *Core::GetEnemies() {
+vector<Enemy*>* Core::GetEnemies() {
 	return &m_enemies;
+}
+
+int* Core::GetStageNum() {
+	return &m_stageNum;
+}
+
+void Core::IncreaseStageNum() {
+	++m_stageNum;
+}
+
+void Core::RemoveEnemy(Enemy* enemy) {
+	for (int i = 0; i < m_enemies.size(); ++i) {
+		if (m_enemies[i] == enemy) {
+			m_enemies.erase(m_enemies.begin() + i);
+		}
+	}
 }
 
 Player* Core::GetSelectedPlayer() {
 	return m_selectedPlayer;
+}
+
+Player** Core::GetSelectedPlayerPtr() {
+	return &m_selectedPlayer;
 }
 
 bool Core::SetSelectedPlayer(const int index) {

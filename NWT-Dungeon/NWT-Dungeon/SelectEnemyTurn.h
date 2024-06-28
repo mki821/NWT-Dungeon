@@ -14,4 +14,3 @@ public:
 private:
 	vector<Enemy*>* m_enemies;
 };
-

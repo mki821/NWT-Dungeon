@@ -16,5 +16,10 @@ void NextStageTurn::Enter() {
 		m_core->GetEnemies()->push_back(enemy);
 	}
 
+	vector<Player*> players = *m_core->GetPlayers();
+	for (int i = 0; i < players.size(); ++i) {
+		players[i]->isAttacked = false;
+	}
+
 	m_stateMachine->ChangeState(TURN::SELECTPLAYER);
 }

@@ -12,7 +12,7 @@ void SelectEnemyTurn::Enter() {
 }
 
 void SelectEnemyTurn::UpdateState() {
-	if (ChooseIndex(0, 2, true, m_core->renderer->select)) {
+	if (ChooseIndex(0, m_enemies->size() - 1, true, m_core->renderer->select)) {
 		m_core->GetSelectedPlayer()->SetTarget((*m_enemies)[m_core->renderer->select]);
 		m_core->renderer->select = 0;
 

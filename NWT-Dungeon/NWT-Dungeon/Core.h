@@ -35,15 +35,22 @@ public:
 private:
 	StateMachine* m_stateMachine;
 public:
-	vector<Player*> GetPlayers();
+	int* GetStageNum();
+	void IncreaseStageNum();
+
+	vector<Player*>* GetPlayers();
 	vector<Enemy*>* GetEnemies();
+	void RemoveEnemy(Enemy* enemy);
 
 	Player* GetSelectedPlayer();
+	Player** GetSelectedPlayerPtr();
 	bool SetSelectedPlayer(int index);
 
 	bool CanPlayerAttack();
 	void ResetPlayersAttack();
 private:
+	int m_stageNum = 1;
+
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;
 

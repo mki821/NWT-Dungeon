@@ -21,7 +21,7 @@ void SelectSkillTurn::UpdateState() {
 
 			Enemy* target = m_selectedPlayer->GetTarget();
 			if (target->GetHealth() < 1) {
-				remove(m_enemies->begin(), m_enemies->end(), target);
+				m_core->RemoveEnemy(target);
 				delete target;
 			}
 

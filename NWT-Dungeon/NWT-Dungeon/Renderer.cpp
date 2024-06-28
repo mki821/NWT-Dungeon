@@ -1,14 +1,20 @@
+#include <string>
 #include <fcntl.h>
 #include <io.h>
 #include "console.h"
+#include "Core.h"
 #include "Character.h"
 #include "Renderer.h"
 
-void Renderer::Init(vector<Player*>* players, Player** selectedPlayer, vector<Enemy*>* enemies) {
-	m_players = players;
-	m_selectedPlayer = selectedPlayer;
+void Renderer::Init(Core* core) {
+	m_core = core;
 
-	m_enemies = enemies;
+	m_stageNum = m_core->GetStageNum();
+
+	m_players = m_core->GetPlayers();
+	m_selectedPlayer = m_core->GetSelectedPlayerPtr();
+
+	m_enemies = m_core->GetEnemies();
 }
 
 void Renderer::Render() {
@@ -19,35 +25,39 @@ void Renderer::Render() {
 void Renderer::GameRender() {
 
 	for (int i = 0; i < m_players->size(); ++i) {
-		if (*m_selectedPlayer == nullptr && select == i) {
+		if (*m_selectedPlayer == nullptr && select == i)
 			SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
-		}
-		else if ((*m_players)[i]->isAttacked) {
+		else if ((*m_players)[i]->isAttacked)
 			SetColor((int)Color::Blue);
-			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
-		}
-		else {
-			if ((*m_players)[i] == *m_selectedPlayer) SetColor((int)Color::Red);
-			CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
-		}
+		else if ((*m_players)[i] == *m_selectedPlayer) 
+			SetColor((int)Color::Red);
+
+		CharacterRender(6 + 20 * i, 21, (*m_players)[i]);
 		SetColor((int)Color::White);
 	}
 
 	for (int i = 0; i < m_enemies->size(); ++i) {
-		if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() == nullptr) {
-			if (select == i) SetColor((int)Color::Red);
-			CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
-		}
-		else {
-			if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() != nullptr) {
-				if ((*m_enemies)[i] == (*m_selectedPlayer)->GetTarget()) SetColor((int)Color::Red);
-				CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
+		if (*m_selectedPlayer != nullptr) {
+			Enemy* currentTarget = (*m_selectedPlayer)->GetTarget();
+
+			if (currentTarget == nullptr) {
+				if (select == i) SetColor((int)Color::Red);
 			}
-			else
-				CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
+			else {
+				if ((*m_enemies)[i] == currentTarget) SetColor((int)Color::Red);
+			}
 		}
+		CharacterRender(68 + 23 * i, 21, (*m_enemies)[i]);
 		SetColor((int)Color::White);
+	}
+
+	for (int i =(int)m_enemies->size(); i < 3; ++i) {
+		int x = 68 + 23 * i;
+		GotoXY(x, 21);
+		for (int y = 22; y >= 0; --y) {
+			GotoXY(x, y);
+			wcout << "                      ";
+		}
 	}
 }
 
@@ -95,6 +105,8 @@ void Renderer::UIRender() {
 
 	memset(_ui, ' ', sizeof(_ui));
 
+	UISet(2, 0, to_string(*m_stageNum));
+
 	vector<PlayerSkill>* selectedPlayerSkills = (*m_players)[select]->GetSkills();
 
 	if(*m_selectedPlayer != nullptr)
@@ -106,7 +118,6 @@ void Renderer::UIRender() {
 
 	if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() != nullptr)
 		UISet(4, 3 + 2 * select, "¢º");
-	else UISet(4, 3, "¢º");
 
 	for (int y = 0; y < 14; ++y) {
 		GotoXY(6, 24 + y);
