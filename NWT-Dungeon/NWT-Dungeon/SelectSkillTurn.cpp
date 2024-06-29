@@ -28,10 +28,10 @@ void SelectSkillTurn::UpdateState() {
 			(*m_selectedPlayer)->SetTarget(nullptr);
 			m_core->SetSelectedPlayer(-1);
 
-			if (m_core->CanPlayerAttack())
-				m_stateMachine->ChangeState(TURN::SELECTPLAYER);
-			else if (m_core->GetEnemies()->size() < 1)
+			if (m_enemies->size() < 1)
 				m_stateMachine->ChangeState(TURN::NEXTSTAGE);
+			else if (m_core->CanPlayerAttack())
+				m_stateMachine->ChangeState(TURN::SELECTPLAYER);
 			else {
 				m_core->ResetPlayersAttack();
 				m_stateMachine->ChangeState(TURN::ENEMYATTACK);

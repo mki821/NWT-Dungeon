@@ -2,8 +2,6 @@
 #include "PlayerBear.h"
 
 void PlayerBear::Init() {
-	Player::Init();
-
 	m_maxHealth = 15;
 	m_health = m_maxHealth;
 	m_attack = 3;
@@ -14,7 +12,9 @@ void PlayerBear::Init() {
 	m_characterSize = 14;
 	m_characterOffset = 2;
 
-	m_skills.push_back({ "일반 공격", 0, 3, "", CAT_SCRATCH });
-	m_skills.push_back({ "할퀴기", 2, 6 });
-	m_skills.push_back({ "누르기", 3, 8 });
+	m_skills.push_back({ "일반 공격", 0, 3, "", BEAR_ATTACK });
+	m_skills.push_back({ "할퀴기", 2, 6, "", BEAR_ATTACK });
+	m_skills.push_back({ "누르기", 3, 8, "", BEAR_ATTACK });
+
+	Player::Init();
 }

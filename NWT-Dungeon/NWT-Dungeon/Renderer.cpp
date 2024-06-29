@@ -105,19 +105,39 @@ void Renderer::UIRender() {
 
 	memset(_ui, ' ', sizeof(_ui));
 
-	UISet(2, 0, to_string(*m_stageNum));
+	for (int i = 0; i < 8; ++i) {
+		UISet(45, 3 + i, STAGE[i]);
+	}
+
+	int num = *m_stageNum;
+	if (num > 9) {
+		for (int i = 0; i < 8; ++i) {
+			UISet(102, 3 + i, NUM[num / 10][i]);
+			UISet(112, 3 + i, NUM[num % 10][i]);
+		}
+	}
+	else {
+		for (int i = 0; i < 8; ++i) {
+			UISet(102, 3 + i, NUM[num % 10][i]);
+		}
+	}
 
 	vector<PlayerSkill>* selectedPlayerSkills = (*m_players)[select]->GetSkills();
 
 	if(*m_selectedPlayer != nullptr)
 		selectedPlayerSkills = (*m_selectedPlayer)->GetSkills();
 
+	UISet(7, 3, "스킬 이름");
+	UISet(20, 3, "스테미나");
+	UISet(30, 3, "공격력");
 	for (int i = 0; i < selectedPlayerSkills->size(); ++i) {
-		UISet(7, 3 + 2 * i, (*selectedPlayerSkills)[i].name);
+		UISet(7, 6 + 2 * i, (*selectedPlayerSkills)[i].name);
+		UISet(23, 6 + 2 * i, std::to_string((*selectedPlayerSkills)[i].useStamina));
+		UISet(32, 6 + 2 * i, std::to_string((*selectedPlayerSkills)[i].attack));
 	}
 
 	if (*m_selectedPlayer != nullptr && (*m_selectedPlayer)->GetTarget() != nullptr)
-		UISet(4, 3 + 2 * select, "▶");
+		UISet(4, 6 + 2 * select, "▶");
 
 	for (int y = 0; y < 14; ++y) {
 		GotoXY(6, 24 + y);

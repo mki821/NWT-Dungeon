@@ -2,7 +2,7 @@
 #include <io.h>
 #include <ctime>
 #include "Core.h"
-#include "TitleScene.h";
+#include "TitleScene.h"
 
 void Init();
 
@@ -21,6 +21,7 @@ int main() {
 	}
 	Core::GetInst()->Run();
 
+	SetColor();
 	Core::DestroyInst();
 }
 

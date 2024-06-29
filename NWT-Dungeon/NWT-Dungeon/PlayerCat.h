@@ -6,4 +6,3 @@ class PlayerCat : public Player
 {
 	void Init() override;
 };
-

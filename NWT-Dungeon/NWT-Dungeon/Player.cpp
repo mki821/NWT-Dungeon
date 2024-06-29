@@ -3,11 +3,16 @@
 #include "console.h"
 #include "define.h"
 #include "Core.h"
-#include "Enemy.h"
 #include "Player.h"
+#include "Enemy.h"
 
 void Player::Init() {
 	m_originCharacter = m_character;
+}
+
+void Player::InitState() {
+	m_health = m_maxHealth;
+	m_stamina = m_maxStamina;
 }
 
 Enemy* Player::GetTarget() {

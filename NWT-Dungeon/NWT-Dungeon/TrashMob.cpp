@@ -7,7 +7,7 @@ void TrashMob::Init()
 	m_stamina = 5;
 
 	m_character = TrashMobSlime;
-	m_characterSize = 15;
+	m_characterSize = 10;
 	m_characterOffset = -1;
 }
 
