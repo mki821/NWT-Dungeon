@@ -4,8 +4,10 @@
 #include "Core.h"
 #include "TitleScene.h";
 
+void Init();
+
 int main() {
-	srand((unsigned int)time(NULL));
+	Init();
 
 	TitleScene* title = new TitleScene;
 
@@ -20,4 +22,12 @@ int main() {
 	Core::GetInst()->Run();
 
 	Core::DestroyInst();
+}
+
+void Init() {
+	srand((unsigned int)time(NULL));
+
+	system("title NWT_DUNGEON | mode con cols=140 lines=40");
+	LockResize();
+	CursorVisible(false, 1);
 }

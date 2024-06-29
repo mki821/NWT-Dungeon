@@ -16,9 +16,6 @@
 Core* Core::m_pInstance = nullptr;
 
 bool Core::Init() {
-	system("title NWT_DUNGEON | mode con cols=140 lines=40");
-	LockResize();
-	CursorVisible(false, 1);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 
 	{
@@ -112,8 +109,7 @@ void Core::RemoveEnemy(Enemy* enemy) {
 	}
 }
 
-int Core::GetPlayerSize()
-{
+int Core::GetPlayerSize() {
 	return m_players.size();
 }
 

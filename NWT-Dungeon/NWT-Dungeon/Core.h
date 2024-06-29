@@ -43,6 +43,7 @@ public:
 	void IncreaseStageNum();
 
 	vector<Player*>* GetPlayers();
+	int GetPlayerSize();
 	vector<Enemy*>* GetEnemies();
 	void RemoveEnemy(Enemy* enemy);
 

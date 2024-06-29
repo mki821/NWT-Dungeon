@@ -11,6 +11,6 @@ public:
 public:
 	void Enter() override;
 private:
-	vector<Enemy*> m_enemies;
+	vector<Enemy*>* m_enemies;
 };
 
