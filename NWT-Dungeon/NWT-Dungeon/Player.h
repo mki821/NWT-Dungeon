@@ -11,6 +11,8 @@ typedef struct _playerSkill {
 	std::string name;
 	int useStamina;
 	int attack;
+	std::string sfxName;
+	vector<std::wstring>* animation;
 } PlayerSkill, *PPlayerSkill;
 
 class Player : public Character {
@@ -19,13 +21,12 @@ public:
 	Enemy* GetTarget();
 	void SetTarget(Enemy* target);
 	bool Attack(int index);
+private:
+	void Animation(const PlayerSkill &ps);
 public:
 	bool isAttacked = false;
 private:
 	Enemy* m_target;
-private:
-	void CommonAttack();
-	const int _commonAttackStamina = 1;
 public:
 	vector<PlayerSkill>* GetSkills();
 	PlayerSkill GetSkillInfo(int index);

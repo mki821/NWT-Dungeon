@@ -75,10 +75,10 @@
     <ClInclude Include="PlayerCat.h">
       <Filter>소스 파일\Player</Filter>
     </ClInclude>
-    <ClInclude Include="TitleScene.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="NextStageTurn.h">
+      <Filter>소스 파일\Turn</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
+    <ClInclude Include="mci.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

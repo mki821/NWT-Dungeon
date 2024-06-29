@@ -2,8 +2,8 @@
 #include "GameLogic.h"
 #include "SelectPlayerTurn.h"
 
-SelectPlayerTurn::SelectPlayerTurn(Core* core, StateMachine* stateMachine) {
-	m_core = core;
+SelectPlayerTurn::SelectPlayerTurn(StateMachine* stateMachine) {
+	m_core = Core::GetInst();
 	m_stateMachine = stateMachine;
 }
 
