@@ -16,7 +16,7 @@ void TitleRender()
 	int currmode = _setmode(_fileno(stdout), prevmode);
 }
 
-bool TitleScene::Title()
+int TitleScene::Title()
 {
 	TitleRender();
 
@@ -26,10 +26,10 @@ bool TitleScene::Title()
 		switch (eMenuType)
 		{
 		case MenuType::Start:
-			return true;
+			return 0;
 			break;
 		case MenuType::Quit:
-			return false;
+			return 1;
 			break;
 		}
 	}

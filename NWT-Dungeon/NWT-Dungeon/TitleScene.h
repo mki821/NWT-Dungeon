@@ -12,9 +12,9 @@ enum class MenuType
 class TitleScene
 {
 public:
-	TitleScene();	
+	TitleScene();		
 public:
-	bool Title();
+	int Title();	
 	MenuType MenuTypeRender();		
 	void SceneAnimation();
 private:

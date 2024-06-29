@@ -6,8 +6,9 @@ void TrashMob::Init()
 	m_health = RandomValue(3, 5);
 	m_stamina = 5;
 
-	m_character = TrashMobSlime;
-	m_characterSize = 15;
+	
+	m_character = TrashMobVisual[RandomValue(0, 2)];
+	m_characterSize = 10;
 	m_characterOffset = -1;
 }
 

@@ -9,8 +9,6 @@ void Enemy::Attack(Player* player)
 
 int Enemy::RandomValue(int min, int max)		
 {
-
-
 	if (min > max) {
 		std::swap(min, max);
 	}

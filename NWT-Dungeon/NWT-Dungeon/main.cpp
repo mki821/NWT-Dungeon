@@ -9,7 +9,12 @@ int main() {
 
 	TitleScene* title = new TitleScene;
 
-	if (!title->Title()) return 0;
+	if (title->Title() > 1) return 0;
+
+	if (title->Title() == 1) {
+		exit(0);
+		return 0;
+	}
 	title->SceneAnimation();
 
 	if (!Core::GetInst()->Init()) {
