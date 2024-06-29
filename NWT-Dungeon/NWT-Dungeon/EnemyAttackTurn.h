@@ -7,7 +7,7 @@ class Core;
 class EnemyAttackTurn : public State
 {
 public:
-	EnemyAttackTurn(Core* core, StateMachine* stateMachine);
+	EnemyAttackTurn(StateMachine* stateMachine);
 public:
 	void Enter() override;
 };

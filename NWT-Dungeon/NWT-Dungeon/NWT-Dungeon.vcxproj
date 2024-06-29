@@ -108,6 +108,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,6 +136,7 @@
     <ClInclude Include="EnemyAttackTurn.h" />
     <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="mci.h" />
     <ClInclude Include="NextStageTurn.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBear.h" />
@@ -159,6 +161,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
       </ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="mci.cpp" />
     <ClCompile Include="NextStageTurn.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBear.cpp" />

@@ -5,7 +5,7 @@
 class NextStageTurn : public State
 {
 public:
-	NextStageTurn(Core* core, StateMachine* stateMachine);
+	NextStageTurn(StateMachine* stateMachine);
 public:
 	void Enter() override;
 };

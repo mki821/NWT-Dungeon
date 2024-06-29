@@ -6,7 +6,7 @@
 class Renderer
 {
 public:
-	void Init(Core* core);	
+	void Init();
 	void Render();
 private:
 	void GameRender();

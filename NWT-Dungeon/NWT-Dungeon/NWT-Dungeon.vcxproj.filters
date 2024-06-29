@@ -75,6 +75,9 @@
     <ClInclude Include="NextStageTurn.h">
       <Filter>소스 파일\Turn</Filter>
     </ClInclude>
+    <ClInclude Include="mci.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="NextStageTurn.cpp">
       <Filter>소스 파일\Turn</Filter>
+    </ClCompile>
+    <ClCompile Include="mci.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

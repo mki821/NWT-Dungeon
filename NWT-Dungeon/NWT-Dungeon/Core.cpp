@@ -43,16 +43,16 @@ bool Core::Init() {
 	}
 
 	m_stateMachine = new StateMachine;
-	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::NEXTSTAGE, new NextStageTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::NEXTSTAGE, new NextStageTurn(m_stateMachine));
 
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
 	renderer = new Renderer;
-	renderer->Init(this);
+	renderer->Init();
 
 	return true;
 }

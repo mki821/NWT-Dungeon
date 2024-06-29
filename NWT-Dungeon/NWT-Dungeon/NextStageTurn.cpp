@@ -1,8 +1,8 @@
 #include "Core.h"
 #include "NextStageTurn.h"
 
-NextStageTurn::NextStageTurn(Core* core, StateMachine* stateMachine) {
-	m_core = core;
+NextStageTurn::NextStageTurn(StateMachine* stateMachine) {
+	m_core = Core::GetInst();
 	m_stateMachine = stateMachine;
 }
 

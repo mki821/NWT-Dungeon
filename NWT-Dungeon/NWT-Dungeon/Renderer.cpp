@@ -6,8 +6,8 @@
 #include "Character.h"
 #include "Renderer.h"
 
-void Renderer::Init(Core* core) {
-	m_core = core;
+void Renderer::Init() {
+	m_core = Core::GetInst();
 
 	m_stageNum = m_core->GetStageNum();
 

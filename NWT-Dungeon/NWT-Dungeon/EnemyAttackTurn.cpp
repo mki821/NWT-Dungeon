@@ -1,9 +1,9 @@
 #include "Core.h"
 #include "EnemyAttackTurn.h"
 
-EnemyAttackTurn::EnemyAttackTurn(Core* core, StateMachine* stateMachine)
+EnemyAttackTurn::EnemyAttackTurn(StateMachine* stateMachine)
 {
-	m_core = core;
+	m_core = Core::GetInst();
 	m_stateMachine = stateMachine;
 
 	srand(unsigned int(time(NULL)));

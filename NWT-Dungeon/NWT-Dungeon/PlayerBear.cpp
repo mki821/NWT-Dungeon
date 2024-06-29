@@ -14,6 +14,7 @@ void PlayerBear::Init() {
 	m_characterSize = 14;
 	m_characterOffset = 2;
 
+	m_skills.push_back({ "일반 공격", 0, 3, "", CAT_SCRATCH });
 	m_skills.push_back({ "할퀴기", 2, 6 });
 	m_skills.push_back({ "누르기", 3, 8 });
 }

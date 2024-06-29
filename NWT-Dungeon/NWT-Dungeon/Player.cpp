@@ -2,11 +2,12 @@
 #include <Windows.h>
 #include "console.h"
 #include "define.h"
+#include "Core.h"
 #include "Enemy.h"
 #include "Player.h"
 
 void Player::Init() {
-	m_skills.push_back({ "일반 공격", 0, 3 });
+	m_originCharacter = m_character;
 }
 
 Enemy* Player::GetTarget() {
@@ -21,6 +22,8 @@ bool Player::Attack(int index) {
 	PlayerSkill currentSkill = m_skills[index];
 
 	if (SetStamina(m_stamina - currentSkill.useStamina)) {
+		Animation(currentSkill);
+
 		m_target->ApplyDamage(currentSkill.attack);
 		isAttacked = true;
 		return true;
@@ -29,11 +32,14 @@ bool Player::Attack(int index) {
 	return false;
 }
 
-void Player::CommonAttack() {
-	m_target->ApplyDamage(m_attack);
-	GotoXY(0, 0);
+void Player::Animation(const PlayerSkill& ps) {
+	for (int i = 0; i < 5; ++i) {
+		copy(ps.animation[i].begin(), ps.animation[i].end(), m_character);
+		Core::GetInst()->renderer->Render();
+		Sleep(50);
+	}
 
-	//Animation
+	m_character = m_originCharacter;
 }
 
 vector<PlayerSkill>* Player::GetSkills() {

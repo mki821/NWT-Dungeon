@@ -2,12 +2,10 @@
 #include "GameLogic.h"
 #include "SelectEnemyTurn.h"
 
-SelectEnemyTurn::SelectEnemyTurn(Core* core, StateMachine* stateMachine) {
-	m_core = core;
+SelectEnemyTurn::SelectEnemyTurn(StateMachine* stateMachine) {
+	m_core = Core::GetInst();
 	m_stateMachine = stateMachine;
-}
 
-void SelectEnemyTurn::Enter() {
 	m_enemies = m_core->GetEnemies();
 }
 
