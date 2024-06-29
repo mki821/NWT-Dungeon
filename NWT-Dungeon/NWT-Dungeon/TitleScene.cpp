@@ -10,13 +10,13 @@ void TitleRender()
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 	for (int i = 0; i < 8; ++i)
 	{
-		GotoXY(2, i);
+		GotoXY(11, i + 4);
 		wcout << MainTitle[i];
 	}
 	int currmode = _setmode(_fileno(stdout), prevmode);
 }
 
-int TitleScene::Title()
+bool TitleScene::Title()
 {
 	TitleRender();
 
@@ -26,11 +26,9 @@ int TitleScene::Title()
 		switch (eMenuType)
 		{
 		case MenuType::Start:
-			return 0;
-			break;
+			return true;
 		case MenuType::Quit:
-			return 1;
-			break;
+			return false;
 		}
 	}
 }
@@ -44,25 +42,26 @@ MenuType TitleScene::MenuTypeRender()
 
 	GotoXY(x, y);
 	cout << "게임 시작";
-	GotoXY(x, y + 1);
+	GotoXY(x, y + 2);
 	cout << "게임 종료" << endl;
 
-	if (ChooseIndex(y, y + 1, false, selectMenu)) {
-		return static_cast<MenuType>(selectMenu - y);
+	if (ChooseIndex(0, 1, false, selectMenu)) {
+		return static_cast<MenuType>(selectMenu);
 	}
 	else {
-		if (selectMenu > origin) {
-			GotoXY(x - 2, origin);
-			cout << " ";
+		if (selectMenu == 0) {
+			GotoXY(x - 3, y);
+			cout << "▶";
+			GotoXY(x - 3, y + 2);
+			cout << "  ";
 		}
-		else if (selectMenu == origin) {
-			GotoXY(x - 2, origin + 1);
-			cout << " ";
+		else {
+			GotoXY(x - 3, y);
+			cout << "  ";
+			GotoXY(x - 3, y + 2);
+			cout << "▶";
 		}
 	}
-
-	GotoXY(x - 2, selectMenu);
-	cout << "▶";
 
 	return MenuType::Info;
 }

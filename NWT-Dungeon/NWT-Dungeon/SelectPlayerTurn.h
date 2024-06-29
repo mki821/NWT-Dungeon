@@ -7,7 +7,7 @@ class Core;
 class SelectPlayerTurn : public State
 {
 public:
-	SelectPlayerTurn(Core* core, StateMachine* stateMachine);
+	SelectPlayerTurn(StateMachine* stateMachine);
 public:
 	void UpdateState() override;
 };

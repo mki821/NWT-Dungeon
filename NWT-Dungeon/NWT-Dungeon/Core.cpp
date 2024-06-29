@@ -6,6 +6,7 @@
 #include "SelectEnemyTurn.h"
 #include "SelectSkillTurn.h"
 #include "EnemyAttackTurn.h"
+#include "NextStageTurn.h"
 #include "PlayerMen.h"
 #include "PlayerBear.h"
 #include "PlayerCat.h"
@@ -15,9 +16,6 @@
 Core* Core::m_pInstance = nullptr;
 
 bool Core::Init() {
-	system("title NWT_DUNGEON | mode con cols=140 lines=40");
-	LockResize();
-	CursorVisible(false, 1);
 	int prevmode = _setmode(_fileno(stdout), _O_U16TEXT);
 
 	{
@@ -50,15 +48,16 @@ bool Core::Init() {
 	}
 
 	m_stateMachine = new StateMachine;
-	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(this, m_stateMachine));
-	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(this, m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTPLAYER, new SelectPlayerTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTENEMY, new SelectEnemyTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::SELECTSKILL, new SelectSkillTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::ENEMYATTACK, new EnemyAttackTurn(m_stateMachine));
+	m_stateMachine->AddState(TURN::NEXTSTAGE, new NextStageTurn(m_stateMachine));
 
 	m_stateMachine->Init(TURN::SELECTPLAYER);
 
 	renderer = new Renderer;
-	renderer->Init(m_players, &m_selectedPlayer, m_enemies);
+	renderer->Init();
 
 	titleScene = new TitleScene;
 
@@ -86,21 +85,40 @@ void Core::FrameSync(int frameRate) {
 	}
 }
 
-vector<Player*> Core::GetPlayers() {
-	return m_players;
+vector<Player*>* Core::GetPlayers() {
+	return &m_players;
 }
 
-vector<Enemy*> Core::GetEnemies() {
-	return m_enemies;
+vector<Enemy*>* Core::GetEnemies() {
+	return &m_enemies;
 }
 
-int Core::GetPlayerSize()
-{
+int* Core::GetStageNum() {
+	return &m_stageNum;
+}
+
+void Core::IncreaseStageNum() {
+	++m_stageNum;
+}
+
+void Core::RemoveEnemy(Enemy* enemy) {
+	for (int i = 0; i < m_enemies.size(); ++i) {
+		if (m_enemies[i] == enemy) {
+			m_enemies.erase(m_enemies.begin() + i);
+		}
+	}
+}
+
+int Core::GetPlayerSize() {
 	return m_players.size();
 }
 
 Player* Core::GetSelectedPlayer() {
 	return m_selectedPlayer;
+}
+
+Player** Core::GetSelectedPlayerPtr() {
+	return &m_selectedPlayer;
 }
 
 bool Core::SetSelectedPlayer(const int index) {

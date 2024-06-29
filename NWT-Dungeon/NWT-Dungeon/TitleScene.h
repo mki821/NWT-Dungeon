@@ -6,7 +6,7 @@
 
 enum class MenuType
 {
-	Start = 0, Info = 1, Quit = 2
+	Start = 0, Quit = 1, Info = 2
 };
 
 class TitleScene

@@ -7,10 +7,10 @@ class Core;
 class EnemyAttackTurn : public State
 {
 public:
-	EnemyAttackTurn(Core* core, StateMachine* stateMachine);
+	EnemyAttackTurn(StateMachine* stateMachine);
 public:
 	void Enter() override;
 private:
-	vector<Enemy*> m_enemies;
+	vector<Enemy*>* m_enemies;
 };
 

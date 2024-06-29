@@ -10,6 +10,7 @@ public:
 	int GetCharacterOffset();
 protected:
 	std::wstring* m_character;
+	std::wstring* m_originCharacter;
 	int m_characterSize;
 	int m_characterOffset = 0;
 public:

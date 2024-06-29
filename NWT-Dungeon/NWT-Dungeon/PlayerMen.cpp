@@ -12,6 +12,7 @@ void PlayerMen::Init() {
 	m_characterSize = 11;
 	m_characterOffset = 0;
 
+	m_skills.push_back({ "ÀÏ¹İ °ø°İ", 0, 3, "", CAT_SCRATCH });
 	m_skills.push_back({ "¸öÅë¹ÚÄ¡±â", 1, 5 });
 	m_skills.push_back({ "Èû²¯ÆİÄ¡", 5, 10 });
 }
