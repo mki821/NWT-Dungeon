@@ -31,3 +31,4 @@ public:
 private:
 	std::unordered_map<TURN, State*> m_stateDictionary;
 };
+

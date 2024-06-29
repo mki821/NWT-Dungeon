@@ -2,17 +2,22 @@
 #include <io.h>
 #include <ctime>
 #include "Core.h"
-#include "TitleScene.h"
+#include "Scene.h"
 
 void Init();
 
 int main() {
 	Init();
 
-	TitleScene* title = new TitleScene;
+	Scene* scene = new Scene;
 
-	if (!title->Title()) return 0;
-	title->SceneAnimation();
+	if (scene->ShowScene(SceneType::Title()) > 1) return 0;
+
+	if (scene->ShowScene(SceneType::Title()) == 1) {	
+		exit(0);
+		return 0;
+	}
+	scene->SceneAnimation();
 
 	if (!Core::GetInst()->Init()) {
 		std::cout << "Game Init Error" << std::endl;

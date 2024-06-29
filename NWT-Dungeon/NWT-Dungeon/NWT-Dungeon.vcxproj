@@ -148,7 +148,6 @@
     <ClInclude Include="SelectPlayerTurn.h" />
     <ClInclude Include="SelectSkillTurn.h" />
     <ClInclude Include="StateMachine.h" />
-    <ClInclude Include="TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boss.cpp" />
@@ -178,7 +177,6 @@
     <ClCompile Include="TestMainnnnnnnnnnnn.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="TrashMob.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -6,14 +6,15 @@ void TrashMob::Init()
 	m_health = RandomValue(3, 5);
 	m_stamina = 5;
 
-	m_character = TrashMobSlime;
+	
+	m_character = TrashMobVisual[RandomValue(0, 2)];
 	m_characterSize = 10;
 	m_characterOffset = -1;
 }
 
 void TrashMob::Attack(Player* player)
 {
-	//¿¡´Ï¸ÞÀÌ¼Ç?? 
+	//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½?? 
 	player->ApplyDamage(m_attack);
 }
 

@@ -6,7 +6,6 @@
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "TitleScene.h"
 
 using std::vector;
 
@@ -36,8 +35,6 @@ public:
 	Renderer* renderer;
 private:
 	StateMachine* m_stateMachine;
-private:
-	TitleScene* titleScene;
 public:
 	int* GetStageNum();
 	void IncreaseStageNum();
