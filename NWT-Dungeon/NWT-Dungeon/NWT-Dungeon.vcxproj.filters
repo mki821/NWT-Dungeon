@@ -19,6 +19,9 @@
     <Filter Include="소스 파일\Player">
       <UniqueIdentifier>{ea7203be-8906-4f53-a476-7163618ec6d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Enemy">
+      <UniqueIdentifier>{0660637d-fb62-472a-8e7f-a9490ab2c8ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core.h">
@@ -95,16 +98,7 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Boss.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyManager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="TrashMob.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
@@ -140,11 +134,20 @@
     <ClCompile Include="PlayerCat.cpp">
       <Filter>소스 파일\Player</Filter>
     </ClCompile>
-    <ClCompile Include="NextStageTurn.cpp">
-      <Filter>소스 파일\Turn</Filter>
-    </ClCompile>
-    <ClCompile Include="mci.cpp">
+    <ClCompile Include="TitleScene.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="TrashMob.cpp">
+      <Filter>소스 파일\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>소스 파일\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

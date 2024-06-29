@@ -5,13 +5,16 @@ Boss::Boss() {}
 
 void Boss::Init()
 {
-	m_attack = 10;
-	m_maxHealth = 10;
-	m_maxStamina = 10;
+	m_attack = 5;
+	m_health = 10;
+
+	m_character = BossSword;
+	m_characterSize = 16;
+	m_characterOffset = -1;
 }
 
-void Boss::BossSkil()
+void Boss::Attack(Player* player)
 {
-	cout << "보스 스킬";
-	SetStamina(m_maxStamina - 1);
+	//에니메이션??
+	player->ApplyDamage(m_attack);
 }

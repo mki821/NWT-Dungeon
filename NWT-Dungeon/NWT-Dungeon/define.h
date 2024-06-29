@@ -4,6 +4,7 @@
 #include <vector>
 #include <fcntl.h>
 #include<iostream>
+#include<ctime>
 
 using namespace std;
 
@@ -31,9 +32,9 @@ static std::wstring MEN[11] = {
 	{L"   | /, _/"},
 	{L"   |/|\\ | __"},
 	{L"   / __\\____\\"}
-};
+}; 
 
-static std::wstring TrashMobVisual[10] =
+static std::wstring TrashMobSlime[10] =
 {
 	{L"      ██            "},
 	{L"       ███          "},
@@ -45,6 +46,55 @@ static std::wstring TrashMobVisual[10] =
 	{L"████████████████████"},
 	{L" ██████████████████ "},
 	{L"   ██████████████   "}
+};
+
+static std::wstring TrashMobBat[10] =
+{
+	{L"   █   ║  █	"},
+	{L"  ██  ███ ██	"},
+	{L" ████ ╬█╬ ███"},
+	{L" █████╦█╦████"},
+	{L" ████████████"},
+	{L" ██   █ █  ██"},
+	{L"  █        █	"},
+	{L"            	"},
+	{L"            	"},
+	{L"            	"},
+};
+
+static std::wstring TrashMobGhost[12] =
+{
+	{L" █    ███   ██"},
+	{L" ███ ██████ ██"},
+	{L"██████████████"},
+	{L" █████ █ █████"},
+	{L"  ████ █ ████ "},
+	{L"   █████████  "},
+	{L"   ███   ███  "},
+	{L"    ██   ████ "},
+	{L"    █████████ "},
+	{L"   ███████████"},
+	{L"  █████ ██████"},
+	{L"  ████    ███ "}
+};
+
+static std::wstring BossSword[15] =
+{                           
+	{L"      ▄██▄      "},       
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L"     █╬╬╬╬█     "},
+	{L" █   █╬╬╬╬█   █ "},
+	{L"█╬████╬╬╬╬████╬█"},
+	{L" █   ▀█▄▄█▀   █ "},       
+	{L"       ██       "},       
+	{L"       ██       "},       
+	{L"       ╩╩       "}
 };
 
 static std::wstring BEAR[14] = {
