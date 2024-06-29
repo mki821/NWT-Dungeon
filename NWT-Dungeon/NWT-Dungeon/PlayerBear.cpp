@@ -9,7 +9,7 @@ void PlayerBear::Init() {
 	m_stamina = m_maxStamina;
 
 	m_character = BEAR;
-	m_characterSize = 14;
+	m_characterSize = 16;
 	m_characterOffset = 2;
 
 	m_skills.push_back({ "일반 공격", 0, 3, "", BEAR_ATTACK });

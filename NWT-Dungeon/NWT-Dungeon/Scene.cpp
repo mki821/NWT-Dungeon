@@ -35,7 +35,7 @@ int Scene::GameScene(SceneType sceneType,string name)
 MenuType Scene::SceneTypeRender(string name)
 {
 	COORD Resolution = GetConsoleResolution();
-	int x = Resolution.X / 2.2;
+	int x = (int)(Resolution.X / 2.2);
 	int y = Resolution.Y / 2;
 	int origin = y;
 

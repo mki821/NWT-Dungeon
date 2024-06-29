@@ -16,15 +16,11 @@ void NextStageTurn::Enter() {
 		(*m_players)[i]->InitState();
 	}
 
-	if (m_core->GetEnemies()->size() > 0)
+
+	if (m_enemies->size() > 0)
 		throw;
 
-	for (int i = 0; i < 3; ++i) {
-		Enemy* enemy = new TrashMob;
-		enemy->Init();
-		m_core->GetEnemies()->push_back(enemy);
-	}
-
+	m_enemies->clear();
 	if (*m_core->GetStageNum() % 5 == 0) {
 		Enemy* boss = new Boss;
 		boss->Init();
@@ -42,6 +38,8 @@ void NextStageTurn::Enter() {
 	for (int i = 0; i < players.size(); ++i) {
 		players[i]->isAttacked = false;
 	}
+
+	system("cls");
 
 	m_stateMachine->ChangeState(TURN::SELECTPLAYER);
 }

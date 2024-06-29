@@ -56,7 +56,7 @@ void Renderer::GameRender() {
 		GotoXY(x, 21);
 		for (int y = 22; y >= 0; --y) {
 			GotoXY(x, y);
-			wcout << "                      ";
+			wcout << "                     ";
 		}
 	}
 }
@@ -106,20 +106,13 @@ void Renderer::UIRender() {
 	memset(_ui, ' ', sizeof(_ui));
 
 	for (int i = 0; i < 8; ++i) {
-		UISet(45, 3 + i, STAGE[i]);
+		UISet(54, 3 + i, STAGE[i]);
 	}
 
 	int num = *m_stageNum;
-	if (num > 9) {
-		for (int i = 0; i < 8; ++i) {
-			UISet(102, 3 + i, NUM[num / 10][i]);
-			UISet(112, 3 + i, NUM[num % 10][i]);
-		}
-	}
-	else {
-		for (int i = 0; i < 8; ++i) {
-			UISet(102, 3 + i, NUM[num % 10][i]);
-		}
+	for (int i = 0; i < 8; ++i) {
+		UISet(108, 3 + i, NUM[num / 10][i]);
+		UISet(118, 3 + i, NUM[num % 10][i]);
 	}
 
 	vector<PlayerSkill>* selectedPlayerSkills = (*m_players)[select]->GetSkills();
