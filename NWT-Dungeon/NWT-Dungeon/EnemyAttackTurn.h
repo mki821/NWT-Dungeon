@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "StateMachine.h"
 
 class Core;	
@@ -11,6 +12,6 @@ public:
 public:
 	void Enter() override;
 private:
-	vector<Enemy*>* m_enemies;
+	std::vector<Enemy*>* m_enemies;
 };
 

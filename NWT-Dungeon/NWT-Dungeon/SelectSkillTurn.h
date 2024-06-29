@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "StateMachine.h"
 
 class Player;
@@ -13,7 +14,7 @@ public:
 	void UpdateState() override;
 private:
 	Player** m_selectedPlayer = nullptr;
-	vector<Enemy*>* m_enemies;
+	std::vector<Enemy*>* m_enemies;
 private:
 	int m_max = 0;
 };

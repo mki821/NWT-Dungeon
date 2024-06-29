@@ -6,4 +6,3 @@ class PlayerBear : public Player
 {
 	void Init() override;
 };
-

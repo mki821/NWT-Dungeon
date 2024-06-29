@@ -18,6 +18,7 @@ typedef struct _playerSkill {
 class Player : public Character {
 public:
 	virtual void Init();
+	void InitState();
 	Enemy* GetTarget();
 	void SetTarget(Enemy* target);
 	bool Attack(int index);

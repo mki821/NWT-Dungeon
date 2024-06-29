@@ -14,7 +14,7 @@ void TrashMob::Init()
 
 void TrashMob::Attack(Player* player)
 {
-	//¿¡´Ï¸ÞÀÌ¼Ç?? 
+	//ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½Ì¼ï¿½?? 
 	player->ApplyDamage(m_attack);
 }
 

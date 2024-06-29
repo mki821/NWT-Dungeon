@@ -11,10 +11,7 @@ int main() {
 
 	Scene* scene = new Scene;
 
-	if (scene->ShowScene(SceneType::Title()) > 1) return 0;
-
-	if (scene->ShowScene(SceneType::Title()) == 1) {	
-		exit(0);
+	if (scene->ShowScene(SceneType::Title) == 1) {	
 		return 0;
 	}
 	scene->SceneAnimation();
@@ -26,6 +23,7 @@ int main() {
 	}
 	Core::GetInst()->Run();
 
+	SetColor();
 	Core::DestroyInst();
 }
 
