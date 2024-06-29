@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include "GameLogic.h"
 
-bool ChooseIndex(int min, int max, bool horizontal, int& select) {
+bool ChooseIndex(int min, int max, bool horizontal, int& select) {	
 	if (GetAsyncKeyState(VK_SPACE) & 0x0001) return true;
 
 	if (horizontal) {

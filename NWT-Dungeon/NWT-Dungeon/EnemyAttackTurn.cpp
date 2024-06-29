@@ -1,12 +1,8 @@
-#include <random>   
+﻿#include <random>   
 #include <chrono> 
 #include "Core.h"
 #include "EnemyAttackTurn.h"
 
-enum class  CharacterEnum
-{
-	Enemy, Player
-};
 
 EnemyAttackTurn::EnemyAttackTurn(Core* core, StateMachine* stateMachine)
 {
@@ -17,30 +13,25 @@ EnemyAttackTurn::EnemyAttackTurn(Core* core, StateMachine* stateMachine)
 void EnemyAttackTurn::Enter()
 {
 	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-	std::default_random_engine engine(seed);
+	std::default_random_engine engine(seed);	
 
-	GotoXY(0, 0);
 	Core* core = m_core->GetInst();
-	cout << core;
-	for (auto a : core->GetEnemies())
-		cout << a;
-	//cout << core->GetEnemies().size();
+	m_enemies = core->GetEnemies();
 
-	
-	//shuffle(core->GetEnemies().begin(), core->GetEnemies().end(), engine);	
-	
-		
+	shuffle(m_enemies.begin(), m_enemies.end(), engine);
 
-	/*for (int i = 0; i < core->GetEnemies().size(); i++)
+	std::uniform_int_distribution<int> enemyDistribution(0, m_enemies.size() - 1);		
+
+	for (int i = 0; i < m_enemies.size(); i++)	
 	{
-		Enemy* enemy = core->GetEnemies()[i];
-		
-		int randValue = rand() % (core->GetPlayers().size() - 1);
+		int randValue = enemyDistribution(engine);		
+		Enemy* enemy = m_enemies[i];
+
 		Player* targetPlayer = core->GetPlayers()[randValue];	
 
-		targetPlayer->ApplyDamage(enemy->GetAttack());
-		enemy->SetStamina(-1);
-	}*/
+		enemy->Attack(targetPlayer);
+		enemy->SetStamina(enemy->GetStamina() - 1);	
+	}
 
-	m_stateMachine->ChangeState(TURN::SELECTPLAYER);
+	m_stateMachine->ChangeState(TURN::SELECTPLAYER);		
 }

@@ -10,5 +10,7 @@ public:
 	EnemyAttackTurn(Core* core, StateMachine* stateMachine);
 public:
 	void Enter() override;
+private:
+	vector<Enemy*> m_enemies;
 };
 

@@ -1,5 +1,6 @@
 ﻿#include <io.h>
 #include "console.h"
+#include "TitleScene.h"
 #include "StateMachine.h"
 #include "SelectPlayerTurn.h"
 #include "SelectEnemyTurn.h"
@@ -35,10 +36,17 @@ bool Core::Init() {
 		m_players.push_back(player);
 	}
 
-	for (int i = 0; i < 3; ++i) {
-		Enemy* enemy = new TrashMob;
-		enemy->Init();
-		m_enemies.push_back(enemy);
+	if (/*stage 넣어야함*/ 1 % 5 == 0) {
+		Enemy* boss = new Boss;
+		boss->Init();
+		m_enemies.push_back(boss);	
+	}
+	else {
+		for (int i = 0; i < 3; ++i) {
+			Enemy* enemy = new TrashMob;	
+			enemy->Init();
+			m_enemies.push_back(enemy);	
+		}
 	}
 
 	m_stateMachine = new StateMachine;
@@ -51,6 +59,8 @@ bool Core::Init() {
 
 	renderer = new Renderer;
 	renderer->Init(m_players, &m_selectedPlayer, m_enemies);
+
+	titleScene = new TitleScene;
 
 	return true;
 }
@@ -82,6 +92,11 @@ vector<Player*> Core::GetPlayers() {
 
 vector<Enemy*> Core::GetEnemies() {
 	return m_enemies;
+}
+
+int Core::GetPlayerSize()
+{
+	return m_players.size();
 }
 
 Player* Core::GetSelectedPlayer() {

@@ -13,8 +13,8 @@ void Boss::Init()
 	m_characterOffset = -1;
 }
 
-void Boss::BossSkil()
+void Boss::Attack(Player* player)
 {
-	cout << "보스 스킬";
-	SetStamina(m_maxStamina - 1);
+	//에니메이션??
+	player->ApplyDamage(m_attack);
 }

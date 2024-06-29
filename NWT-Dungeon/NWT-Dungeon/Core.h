@@ -6,6 +6,7 @@
 #include "Character.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "TitleScene.h"
 
 using std::vector;
 
@@ -35,9 +36,12 @@ public:
 	Renderer* renderer;
 private:
 	StateMachine* m_stateMachine;
+private:
+	TitleScene* titleScene;
 public:
 	vector<Player*> GetPlayers();
 	vector<Enemy*> GetEnemies();
+	int GetPlayerSize();
 
 	Player* GetSelectedPlayer();
 	bool SetSelectedPlayer(int index);
