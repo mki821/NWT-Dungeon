@@ -1,6 +1,5 @@
 ﻿#include <io.h>
 #include "console.h"
-#include "TitleScene.h"
 #include "StateMachine.h"
 #include "SelectPlayerTurn.h"
 #include "SelectEnemyTurn.h"
@@ -58,8 +57,6 @@ bool Core::Init() {
 
 	renderer = new Renderer;
 	renderer->Init();
-
-	titleScene = new TitleScene;
 
 	return true;
 }
