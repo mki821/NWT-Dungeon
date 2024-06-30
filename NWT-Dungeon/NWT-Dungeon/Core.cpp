@@ -33,17 +33,10 @@ bool Core::Init() {
 		m_players.push_back(player);
 	}
 
-	if (m_stageNum % 5 == 0) {
-		Enemy* boss = new Boss;
-		boss->Init();
-		m_enemies.push_back(boss);	
-	}
-	else {
-		for (int i = 0; i < 3; ++i) {
-			Enemy* enemy = new TrashMob;	
-			enemy->Init();
-			m_enemies.push_back(enemy);	
-		}
+	for (int i = 0; i < 3; ++i) {
+		Enemy* enemy = new TrashMob;	
+		enemy->Init();
+		m_enemies.push_back(enemy);	
 	}
 
 	m_stateMachine = new StateMachine;

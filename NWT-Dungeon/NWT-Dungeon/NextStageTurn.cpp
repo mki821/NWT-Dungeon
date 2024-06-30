@@ -1,4 +1,5 @@
 #include "Core.h"
+#include "Scene.h"
 #include "NextStageTurn.h"
 
 NextStageTurn::NextStageTurn(StateMachine* stateMachine) {
@@ -10,12 +11,17 @@ NextStageTurn::NextStageTurn(StateMachine* stateMachine) {
 }
 
 void NextStageTurn::Enter() {
+	if (*m_core->GetStageNum() == 20) {
+		system("cls");
+		(new Scene)->ShowScene(SceneType::Clear);
+		exit(0);
+		return;
+	}
 	m_core->IncreaseStageNum();
 
 	for (int i = 0; i < m_players->size(); ++i) {
 		(*m_players)[i]->InitState();
 	}
-
 
 	if (m_enemies->size() > 0)
 		throw;

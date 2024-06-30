@@ -34,5 +34,3 @@ public:
 protected:
 	vector<PlayerSkill> m_skills;
 };
-
-class PlayerMen;
