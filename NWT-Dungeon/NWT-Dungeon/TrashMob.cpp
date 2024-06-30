@@ -9,7 +9,7 @@ void TrashMob::Init()
 	
 	m_character = TrashMobVisual[RandomValue(0, 2)];
 	m_characterSize = 10;
-	m_characterOffset = -1;
+	m_characterOffset = 0;
 }
 
 void TrashMob::Attack(Player* player)
