@@ -51,7 +51,7 @@ public:
 	bool CanPlayerAttack();
 	void ResetPlayersAttack();
 private:
-	int m_stageNum = 1;
+	int m_stageNum = 10;
 
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;

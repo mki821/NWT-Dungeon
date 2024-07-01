@@ -33,7 +33,7 @@ bool Core::Init() {
 		m_players.push_back(player);
 	}
 
-	if (/*stage 넣어야함*/ 1 % 5 == 0) {
+	if (m_stageNum % 5 == 0) {
 		Enemy* boss = new Boss;
 		boss->Init();
 		m_enemies.push_back(boss);	

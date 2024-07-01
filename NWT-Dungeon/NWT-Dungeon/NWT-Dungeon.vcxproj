@@ -156,7 +156,6 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="EnemyAttackTurn.cpp" />
-    <ClCompile Include="EnemyManager.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
