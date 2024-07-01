@@ -34,10 +34,11 @@ int Scene::GameScene(SceneType sceneType,string name)
 
 MenuType Scene::SceneTypeRender(string name)
 {
+	int prevmode = _setmode(_fileno(stdout), _O_TEXT);
+
 	COORD Resolution = GetConsoleResolution();
-	int x = Resolution.X / 2.2;
+	int x = (int)(Resolution.X / 2.2);
 	int y = Resolution.Y / 2;
-	int origin = y;
 
 	GotoXY(x, y);
 	cout << name;
@@ -45,6 +46,7 @@ MenuType Scene::SceneTypeRender(string name)
 	cout << "던전 탈출" << endl;
 
 	if (ChooseIndex(0, 1, false, selectMenu)) {
+		int newmode = _setmode(_fileno(stdout), prevmode);
 		return static_cast<MenuType>(selectMenu);
 	}
 	else {
@@ -62,6 +64,7 @@ MenuType Scene::SceneTypeRender(string name)
 		}
 	}
 
+	int newmode = _setmode(_fileno(stdout), prevmode);
 	return MenuType::None;
 }
 
@@ -105,10 +108,10 @@ int Scene::ShowScene(SceneType sceneType)
 {
 	switch (sceneType)
 	{
-	case SceneType::Title:	
+	case SceneType::Title:
 		return GameScene(sceneType, "던전 입장");
 	case SceneType::Clear:	
-		return GameScene(sceneType, "던전 재입장");
+		return GameScene(sceneType, "던전 탈출");
 	case SceneType::End:	
 		return GameScene(sceneType, "던전 재도전");
 	default:

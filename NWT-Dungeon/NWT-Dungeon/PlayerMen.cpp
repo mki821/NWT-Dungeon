@@ -2,8 +2,6 @@
 #include "PlayerMen.h"
 
 void PlayerMen::Init() {
-	Player::Init();
-
 	m_health = m_maxHealth;
 	m_attack = 3;
 	m_stamina = m_maxStamina;
@@ -12,7 +10,9 @@ void PlayerMen::Init() {
 	m_characterSize = 11;
 	m_characterOffset = 0;
 
-	m_skills.push_back({ "ÀÏ¹İ °ø°İ", 0, 3, "", CAT_SCRATCH });
-	m_skills.push_back({ "¸öÅë¹ÚÄ¡±â", 1, 5 });
-	m_skills.push_back({ "Èû²¯ÆİÄ¡", 5, 10 });
+	m_skills.push_back({ "ÀÏ¹İ °ø°İ", 0, 3, "", MEN_ATTACK });
+	m_skills.push_back({ "¸öÅë¹ÚÄ¡±â", 1, 5, "", MEN_ATTACK });
+	m_skills.push_back({ "Èû²¯ÆİÄ¡", 5, 10, "", MEN_ATTACK });
+
+	Player::Init();
 }

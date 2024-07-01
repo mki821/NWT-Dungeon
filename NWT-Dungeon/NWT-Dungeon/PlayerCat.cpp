@@ -13,9 +13,9 @@ void PlayerCat::Init() {
 	m_characterSize = 14;
 	m_characterOffset = -1;
 
-	m_skills.push_back({ "일반 공격", 0, 3, "", CAT_SCRATCH });
-	m_skills.push_back({ "할퀴기", 2, 6, "", CAT_SCRATCH });
-	m_skills.push_back({ "물기", 4, 10, "", CAT_SCRATCH });
+	m_skills.push_back({ "일반 공격", 0, 3, "", CAT_ATTACK });
+	m_skills.push_back({ "할퀴기", 2, 6, "", CAT_ATTACK });
+	m_skills.push_back({ "물기", 4, 10, "", CAT_ATTACK });
 
 	Player::Init();
 }

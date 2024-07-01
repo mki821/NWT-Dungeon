@@ -28,7 +28,11 @@ void EnemyAttackTurn::Enter()
 		Player* targetPlayer = (*m_core->GetPlayers())[randValue];
 
 		enemy->Attack(targetPlayer);
-		enemy->SetStamina(enemy->GetStamina() - 1);	
+		enemy->SetStamina(enemy->GetStamina() - 1);
+
+		if (targetPlayer->GetHealth() < 1) {
+			delete targetPlayer;
+		}
 	}
 
 	m_stateMachine->ChangeState(TURN::SELECTPLAYER);		
