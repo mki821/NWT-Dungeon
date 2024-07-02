@@ -11,7 +11,7 @@ int Enemy::ModifyStat(int stat)
 {
 	int* stage = Core::GetInst()->GetStageNum();
 
-	return stat + std::floor((*stage) / 5);	
+	return stat + std::floor((*stage) / 5 * 2);	
 
 }
 
@@ -24,5 +24,5 @@ int Enemy::RandomValue(int min, int max)
 	int range = max - min + 1;
 	int random = rand() % range + min;
 
-	return ModifyStat(random);	
+	return random;		
 }

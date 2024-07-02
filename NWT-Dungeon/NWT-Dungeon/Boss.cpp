@@ -5,8 +5,8 @@ Boss::Boss() {}
 
 void Boss::Init()
 {
-	m_attack = RandomValue(3, 4);
-	m_health = RandomValue(30, 32);
+	m_attack = ModifyStat(RandomValue(3, 4));
+	m_health = ModifyStat(RandomValue(30, 32));
 	m_stamina = 10;
 
 	m_maxHealth = m_health;
