@@ -11,17 +11,21 @@ NextStageTurn::NextStageTurn(StateMachine* stateMachine) {
 }
 
 void NextStageTurn::Enter() {
-	if (*m_core->GetStageNum() == 20) {
+	int stageNum = *m_core->GetStageNum();
+	if (stageNum == 20) {
 		system("cls");
 		(new Scene)->ShowScene(SceneType::Clear);
 		exit(0);
 		return;
 	}
-	m_core->IncreaseStageNum();
 
-	for (int i = 0; i < m_players->size(); ++i) {
-		(*m_players)[i]->InitState();
+	if (stageNum % 5 == 0) {
+		for (int i = 0; i < m_players->size(); ++i) {
+			(*m_players)[i]->InitState();
+		}
 	}
+
+	m_core->IncreaseStageNum();
 
 	if (m_enemies->size() > 0)
 		throw;
