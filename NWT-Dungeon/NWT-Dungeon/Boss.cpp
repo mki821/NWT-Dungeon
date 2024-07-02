@@ -5,16 +5,19 @@ Boss::Boss() {}
 
 void Boss::Init()
 {
-	m_attack = 5;
-	m_health = 10;
+	m_attack = ModifyStat(RandomValue(3, 4));
+	m_health = ModifyStat(RandomValue(30, 32));
+	m_stamina = 10;
+
+	m_maxHealth = m_health;
+	m_maxStamina = m_stamina;
 
 	m_character = BossSword;
 	m_characterSize = 16;
-	m_characterOffset = -1;
+	m_characterOffset = 0;
 }
 
 void Boss::Attack(Player* player)
 {
-	//에니메이션??
 	player->ApplyDamage(m_attack);
 }
