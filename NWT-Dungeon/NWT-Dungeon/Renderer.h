@@ -8,6 +8,7 @@ class Renderer
 public:
 	void Init();
 	void Render();
+	void RemovePlayer(int index);
 private:
 	void GameRender();
 	void CharacterRender(int x, int y, Character* _character);

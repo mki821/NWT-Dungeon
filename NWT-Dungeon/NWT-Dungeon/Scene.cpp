@@ -113,7 +113,7 @@ int Scene::ShowScene(SceneType sceneType)
 	case SceneType::Clear:	
 		return GameScene(sceneType, "던전 탈출");
 	case SceneType::End:	
-		return GameScene(sceneType, "던전 재도전");
+		return GameScene(sceneType, "  도망");
 	default:
 		break;
 	}
