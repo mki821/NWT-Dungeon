@@ -7,11 +7,11 @@ void Enemy::Attack(Player* player)
 }
 
 
-int Enemy::ModifyStat(int stat)
+int Enemy::ModifyStat(int stat, float mod )
 {
 	int* stage = Core::GetInst()->GetStageNum();
 
-	return stat + std::floor((*stage) / 5 * 2);	
+	return stat + std::floor((*stage) / 5 * mod);
 
 }
 

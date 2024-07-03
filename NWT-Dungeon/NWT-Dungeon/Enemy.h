@@ -16,7 +16,7 @@ public:
 	virtual void Init();
 	virtual void Attack(Player* player);
 	
-	int ModifyStat(int stat);
+	int ModifyStat(int stat, float mod);
 	int RandomValue(int min, int max);
 
 private:

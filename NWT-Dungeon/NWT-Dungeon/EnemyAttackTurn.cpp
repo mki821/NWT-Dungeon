@@ -18,7 +18,7 @@ void EnemyAttackTurn::Enter()
 
 	shuffle(m_enemies->begin(), m_enemies->end(), engine);
 
-	std::uniform_int_distribution<int> enemyDistribution(0, (int)m_enemies->size() - 1);
+	std::uniform_int_distribution<int> enemyDistribution(0, (int)m_core->GetPlayerSize() - 1);	
 
 	for (int i = 0; i < m_enemies->size(); i++)
 	{
