@@ -79,8 +79,26 @@ vector<Player*>* Core::GetPlayers() {
 	return &m_players;
 }
 
+void Core::RemovePlayer(Player* player) {
+	for (int i = 0; i < m_players.size(); ++i) {
+		if (m_players[i] == player) {
+			m_players.erase(m_players.begin() + i);
+			break;
+		}
+	}
+}
+
 vector<Enemy*>* Core::GetEnemies() {
 	return &m_enemies;
+}
+
+void Core::RemoveEnemy(Enemy* enemy) {
+	for (int i = 0; i < m_enemies.size(); ++i) {
+		if (m_enemies[i] == enemy) {
+			m_enemies.erase(m_enemies.begin() + i);
+			break;
+		}
+	}
 }
 
 int* Core::GetStageNum() {
@@ -89,14 +107,6 @@ int* Core::GetStageNum() {
 
 void Core::IncreaseStageNum() {
 	++m_stageNum;
-}
-
-void Core::RemoveEnemy(Enemy* enemy) {
-	for (int i = 0; i < m_enemies.size(); ++i) {
-		if (m_enemies[i] == enemy) {
-			m_enemies.erase(m_enemies.begin() + i);
-		}
-	}
 }
 
 int Core::GetPlayerSize() {
