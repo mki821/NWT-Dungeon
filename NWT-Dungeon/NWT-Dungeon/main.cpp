@@ -33,4 +33,5 @@ void Init() {
 	system("title NWT_DUNGEON | mode con cols=140 lines=40");
 	LockResize();
 	CursorVisible(false, 1);
+	SetColor();
 }

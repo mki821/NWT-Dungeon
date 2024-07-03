@@ -36,6 +36,15 @@ void Renderer::GameRender() {
 		SetColor((int)Color::White);
 	}
 
+	for (int i = (int)m_players->size(); i < 3; ++i) {
+		int x = 2 + 21 * i;
+		GotoXY(x, 21);
+		for (int y = 22; y >= 0; --y) {
+			GotoXY(x, y);
+			wcout << "                      ";
+		}
+	}
+
 	for (int i = 0; i < m_enemies->size(); ++i) {
 		if (*m_selectedPlayer != nullptr) {
 			Enemy* currentTarget = (*m_selectedPlayer)->GetTarget();
@@ -79,6 +88,15 @@ void Renderer::CharacterRender(int _x, int _y, Character* _character) {
 	}
 }
 
+void Renderer::RemovePlayer(int index) {
+	int x = 2 + 21 * index;
+	GotoXY(x, 21);
+	for (int y = 22; y >= 0; --y) {
+		GotoXY(x, y);
+		wcout << "                      ";
+	}
+}
+
 void Renderer::UIRender() {
 	int prevmode = _setmode(_fileno(stdout), _O_TEXT);
 
@@ -111,14 +129,16 @@ void Renderer::UIRender() {
 
 	int num = *m_stageNum;
 	for (int i = 0; i < 8; ++i) {
-		UISet(108, 3 + i, NUM[num / 10][i]);
-		UISet(118, 3 + i, NUM[num % 10][i]);
+		UISet(107, 3 + i, NUM[num / 10][i]);
+		UISet(117, 3 + i, NUM[num % 10][i]);
 	}
 
-	vector<PlayerSkill>* selectedPlayerSkills = (*m_players)[select]->GetSkills();
+	vector<PlayerSkill>* selectedPlayerSkills;
 
-	if(*m_selectedPlayer != nullptr)
+	if (*m_selectedPlayer != nullptr)
 		selectedPlayerSkills = (*m_selectedPlayer)->GetSkills();
+	else
+		selectedPlayerSkills = (*m_players)[select]->GetSkills();
 
 	UISet(7, 3, "스킬 이름");
 	UISet(20, 3, "스테미나");

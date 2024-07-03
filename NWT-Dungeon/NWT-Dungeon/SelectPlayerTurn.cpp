@@ -8,7 +8,7 @@ SelectPlayerTurn::SelectPlayerTurn(StateMachine* stateMachine) {
 }
 
 void SelectPlayerTurn::UpdateState() {
-	if (ChooseIndex(0, 2, true, m_core->renderer->select)) {
+	if (ChooseIndex(0, m_core->GetPlayerSize() - 1, true, m_core->renderer->select)) {
 		if (m_core->SetSelectedPlayer(m_core->renderer->select)) {
 			m_core->renderer->select = 0;
 

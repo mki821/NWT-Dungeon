@@ -41,6 +41,7 @@ public:
 
 	vector<Player*>* GetPlayers();
 	int GetPlayerSize();
+	void RemovePlayer(Player* player);
 	vector<Enemy*>* GetEnemies();
 	void RemoveEnemy(Enemy* enemy);
 
@@ -51,7 +52,7 @@ public:
 	bool CanPlayerAttack();
 	void ResetPlayersAttack();
 private:
-	int m_stageNum = 1;
+	int m_stageNum = 14;
 
 	std::vector<Player*> m_players;
 	Player* m_selectedPlayer;
